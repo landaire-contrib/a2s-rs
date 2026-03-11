@@ -4,3 +4,6 @@ members = [
     "crates/a2s",
     "crates/a2s-cli",
 ]
+exclude = [
+    "fuzz",
+]

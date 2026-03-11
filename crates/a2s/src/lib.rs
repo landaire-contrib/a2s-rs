@@ -96,6 +96,7 @@ macro_rules! read_buffer_offset {
 pub(crate) use read_buffer_offset;
 
 #[derive(Debug, Clone, Default)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 pub struct DeOptions {
     pub the_ship: bool,
 }

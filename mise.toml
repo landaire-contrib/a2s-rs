@@ -18,4 +18,37 @@ description = "Runs cargo-clippy-fix against all features"
 run = "cargo clippy --fix --all-features --allow-dirty"
 depends_post = ["fmt"]
 
+[tasks.fuzz]
+description = "Runs all fuzz targets in parallel for 30s each"
+depends = [
+    "fuzz:info",
+    "fuzz:players",
+    "fuzz:rules",
+    "fuzz:info-structured",
+    "fuzz:players-structured",
+    "fuzz:rules-structured",
+]
 
+[tasks."fuzz:info"]
+description = "Fuzz info parser"
+run = "cargo +nightly fuzz run fuzz_info -- -max_total_time=30"
+
+[tasks."fuzz:players"]
+description = "Fuzz players parser"
+run = "cargo +nightly fuzz run fuzz_players -- -max_total_time=30"
+
+[tasks."fuzz:rules"]
+description = "Fuzz rules parser"
+run = "cargo +nightly fuzz run fuzz_rules -- -max_total_time=30"
+
+[tasks."fuzz:info-structured"]
+description = "Fuzz info parser (structure-aware)"
+run = "cargo +nightly fuzz run fuzz_info_structured -- -max_total_time=30"
+
+[tasks."fuzz:players-structured"]
+description = "Fuzz players parser (structure-aware)"
+run = "cargo +nightly fuzz run fuzz_players_structured -- -max_total_time=30"
+
+[tasks."fuzz:rules-structured"]
+description = "Fuzz rules parser (structure-aware)"
+run = "cargo +nightly fuzz run fuzz_rules_structured -- -max_total_time=30"

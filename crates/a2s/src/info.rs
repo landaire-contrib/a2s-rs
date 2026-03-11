@@ -26,6 +26,7 @@ pub const INFO_REQUEST: [u8; 25] = [
 ];
 
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct TheShip {
     /// Indicates the game mode
@@ -39,6 +40,7 @@ pub struct TheShip {
 }
 
 #[derive(Debug, Clone, Copy)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[repr(u8)]
 pub enum TheShipMode {
@@ -66,6 +68,7 @@ impl From<u8> for TheShipMode {
 }
 
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct ExtendedServerInfo {
     /// The server's game port number.
@@ -87,6 +90,7 @@ pub struct ExtendedServerInfo {
 }
 
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct SourceTVInfo {
     /// Spectator port number for SourceTV.
@@ -97,6 +101,7 @@ pub struct SourceTVInfo {
 }
 
 #[derive(Debug, Clone, Copy)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[repr(u8)]
 pub enum ServerType {
@@ -118,6 +123,7 @@ impl TryFrom<u8> for ServerType {
 }
 
 #[derive(Debug, Clone, Copy)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[repr(u8)]
 pub enum ServerOS {
@@ -140,6 +146,7 @@ impl TryFrom<u8> for ServerOS {
 }
 
 #[derive(Debug, Clone)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Info {
     /// Protocol version used by the server.

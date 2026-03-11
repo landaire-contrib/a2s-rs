@@ -11,6 +11,7 @@ keywords = ["steam", "query"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+arbitrary = { version = "1", features = ["derive"], optional = true }
 byteorder = "1"
 bzip2 = "0.4.4"
 crc = "1"

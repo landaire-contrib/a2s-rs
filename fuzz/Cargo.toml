@@ -1,0 +1,58 @@
+[package]
+name = "a2s-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+arbitrary = { version = "1", features = ["derive"] }
+libfuzzer-sys = "0.4"
+
+[dependencies.a2s]
+path = "../crates/a2s"
+features = ["arbitrary"]
+
+[[bin]]
+name = "fuzz_info_structured"
+path = "fuzz_targets/fuzz_info_structured.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_players_structured"
+path = "fuzz_targets/fuzz_players_structured.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_rules_structured"
+path = "fuzz_targets/fuzz_rules_structured.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_info"
+path = "fuzz_targets/fuzz_info.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_players"
+path = "fuzz_targets/fuzz_players.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_rules"
+path = "fuzz_targets/fuzz_rules.rs"
+test = false
+doc = false
+bench = false
