@@ -284,18 +284,17 @@ impl Info {
         if let Some(steam_id) = &self.extended_server_info.steam_id {
             w.write_all(&steam_id.to_le_bytes())?;
         }
+        if let Some(source_tv) = &self.source_tv {
+            w.write_all(&source_tv.port.to_le_bytes())?;
+            w.write_all(source_tv.name.as_bytes())?;
+            w.write_all(&[0])?;
+        }
         if let Some(keywords) = &self.extended_server_info.keywords {
             w.write_all(keywords.as_bytes())?;
             w.write_all(&[0])?;
         }
         if let Some(game_id) = &self.extended_server_info.game_id {
             w.write_all(&game_id.to_le_bytes())?;
-        }
-
-        if let Some(source_tv) = &self.source_tv {
-            w.write_all(&source_tv.port.to_le_bytes())?;
-            w.write_all(source_tv.name.as_bytes())?;
-            w.write_all(&[0])?;
         }
 
         Ok(())
@@ -351,27 +350,15 @@ impl Info {
                 }
             }
         };
-        let extended_server_info = ExtendedServerInfo {
-            port: if edf & 0x80 != 0 {
-                Some(data.read_u16::<LittleEndian>()?)
-            } else {
-                None
-            },
-            steam_id: if edf & 0x10 != 0 {
-                Some(data.read_u64::<LittleEndian>()?)
-            } else {
-                None
-            },
-            keywords: if edf & 0x20 != 0 {
-                Some(data.read_cstring()?)
-            } else {
-                None
-            },
-            game_id: if edf & 0x01 != 0 {
-                Some(data.read_u64::<LittleEndian>()?)
-            } else {
-                None
-            },
+        let port = if edf & 0x80 != 0 {
+            Some(data.read_u16::<LittleEndian>()?)
+        } else {
+            None
+        };
+        let steam_id = if edf & 0x10 != 0 {
+            Some(data.read_u64::<LittleEndian>()?)
+        } else {
+            None
         };
         let source_tv = if edf & 0x40 != 0 {
             Some(SourceTVInfo {
@@ -380,6 +367,22 @@ impl Info {
             })
         } else {
             None
+        };
+        let keywords = if edf & 0x20 != 0 {
+            Some(data.read_cstring()?)
+        } else {
+            None
+        };
+        let game_id = if edf & 0x01 != 0 {
+            Some(data.read_u64::<LittleEndian>()?)
+        } else {
+            None
+        };
+        let extended_server_info = ExtendedServerInfo {
+            port,
+            steam_id,
+            keywords,
+            game_id,
         };
 
         Ok(Info {

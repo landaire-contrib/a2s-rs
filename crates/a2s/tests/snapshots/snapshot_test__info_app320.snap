@@ -28,16 +28,16 @@ Info {
             90282749540162560,
         ),
         keywords: Some(
-            "�i[MARS][FJC]Marvin the Martian",
+            "alltalk,gravity",
         ),
         game_id: Some(
-            3200771125997759585,
+            320,
         ),
     },
     source_tv: Some(
         SourceTVInfo {
-            port: 29287,
-            name: "avity",
+            port: 27021,
+            name: "[MARS][FJC]Marvin the Martian",
         },
     ),
 }
