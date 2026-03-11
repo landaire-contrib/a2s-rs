@@ -1,0 +1,43 @@
+---
+source: crates/a2s/tests/e2e_test.rs
+assertion_line: 73
+expression: info
+---
+Info {
+    protocol: 17,
+    name: "Fusionhead Jazz Club - S1: HL2DM Hi-Kill/Lo-Grav Fast-DL",
+    map: "asc_mp_killbox2_v11",
+    folder: "hl2mp",
+    game: "Half-Life 2 Deathmatch",
+    app_id: 320,
+    players: 4,
+    max_players: 25,
+    bots: 0,
+    server_type: Dedicated,
+    server_os: Linux,
+    visibility: false,
+    vac: true,
+    the_ship: None,
+    version: "9540945",
+    edf: 241,
+    extended_server_info: ExtendedServerInfo {
+        port: Some(
+            27015,
+        ),
+        steam_id: Some(
+            90282749540162560,
+        ),
+        keywords: Some(
+            "alltalk,gravity",
+        ),
+        game_id: Some(
+            320,
+        ),
+    },
+    source_tv: Some(
+        SourceTVInfo {
+            port: 27021,
+            name: "[MARS][FJC]Marvin the Martian",
+        },
+    ),
+}
