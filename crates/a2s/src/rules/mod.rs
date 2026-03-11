@@ -84,8 +84,12 @@ impl Rule {
     }
 
     pub fn from_reader<R: Read>(mut data: R) -> Result<Vec<Self>> {
-        if data.read_u8()? != 0x45 {
-            return Err(Error::InvalidResponse);
+        let header = data.read_u8()?;
+        if header != 0x45 {
+            return Err(Error::UnexpectedHeader {
+                expected: 0x45,
+                actual: header,
+            });
         }
 
         let count = data.read_u16::<LittleEndian>()?;

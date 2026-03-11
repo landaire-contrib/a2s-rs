@@ -64,7 +64,10 @@ impl A2SClient {
         data.truncate(read);
 
         if data.len() < 4 {
-            return Err(Error::InvalidResponse);
+            return Err(Error::PacketTooShort {
+                expected: 4,
+                actual: data.len(),
+            });
         }
 
         let header = read_buffer_offset!(&data, crate::OFS_HEADER, i32);
@@ -78,7 +81,7 @@ impl A2SClient {
                 read_buffer_offset!(&data, crate::OFS_MP_SS_SIZE, u16).into();
 
             if (switching_size > self.max_size) || (total_packets > 32) {
-                return Err(Error::InvalidResponse);
+                return Err(Error::MultiPacketTooLarge);
             }
 
             let mut packets: Vec<PacketFragment> = Vec::with_capacity(0);
@@ -97,13 +100,16 @@ impl A2SClient {
                 data.truncate(read);
 
                 if data.len() <= 9 {
-                    Err(Error::InvalidResponse)?
+                    return Err(Error::PacketTooShort {
+                        expected: 10,
+                        actual: data.len(),
+                    });
                 }
 
                 let packet_id = read_buffer_offset!(&data, crate::OFS_MP_ID, i32);
 
                 if packet_id != id {
-                    return Err(Error::MismatchID);
+                    return Err(Error::MismatchPacketId);
                 }
 
                 if id as u32 & 0x80000000 == 0 {
@@ -147,7 +153,7 @@ impl A2SClient {
                 BzDecoder::new(aggregation.deref()).read_exact(&mut decompressed)?;
 
                 if crc32::checksum_ieee(&decompressed) != checksum {
-                    return Err(Error::CheckSumMismatch);
+                    return Err(Error::ChecksumMismatch);
                 }
 
                 Ok(decompressed)
@@ -155,7 +161,10 @@ impl A2SClient {
                 Ok(aggregation)
             }
         } else {
-            Err(Error::InvalidResponse)
+            Err(Error::UnexpectedHeader {
+                expected: crate::SINGLE_PACKET as u8,
+                actual: data[0],
+            })
         }
     }
 

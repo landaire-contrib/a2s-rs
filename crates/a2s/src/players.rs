@@ -60,8 +60,12 @@ impl Player {
     }
 
     pub fn from_reader<R: Read>(mut data: R, options: &DeOptions) -> Result<Vec<Self>> {
-        if data.read_u8()? != 0x44 {
-            return Err(Error::InvalidResponse);
+        let header = data.read_u8()?;
+        if header != 0x44 {
+            return Err(Error::UnexpectedHeader {
+                expected: 0x44,
+                actual: header,
+            });
         }
 
         let player_count = data.read_u8()?;

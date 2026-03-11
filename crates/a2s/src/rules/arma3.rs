@@ -87,7 +87,7 @@ impl Arma3Rules {
         }
 
         if chunks.is_empty() {
-            return Err(Error::Other("no binary chunks found in rules"));
+            return Err(Error::NoBinaryChunks);
         }
 
         chunks.sort_by_key(|&(idx, _)| idx);
@@ -193,7 +193,7 @@ fn read_var_uint<R: Read>(r: &mut R, len: usize) -> Result<u64> {
         return Ok(0);
     }
     if len > 8 {
-        return Err(Error::Other("steam ID length exceeds 8 bytes"));
+        return Err(Error::SteamIdTooLong);
     }
     let mut buf = [0u8; 8];
     r.read_exact(&mut buf[..len])?;

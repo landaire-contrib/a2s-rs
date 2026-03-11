@@ -3,25 +3,35 @@ use thiserror::Error;
 pub type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Debug, Error)]
+#[non_exhaustive]
 pub enum Error {
-    #[error("IO error {0}")]
+    #[error("IO error: {0}")]
     Io(#[from] std::io::Error),
 
-    #[error("Failed to reserve memory {0}")]
+    #[error("failed to reserve memory: {0}")]
     TryReserveError(#[from] std::collections::TryReserveError),
 
-    #[error("Invalid response")]
-    InvalidResponse,
+    #[error("unexpected response header: expected 0x{expected:02X}, got 0x{actual:02X}")]
+    UnexpectedHeader { expected: u8, actual: u8 },
 
-    #[error("Mismatch packet ID")]
-    MismatchID,
+    #[error("packet too short: expected at least {expected} bytes, got {actual}")]
+    PacketTooShort { expected: usize, actual: usize },
 
-    #[error("Invalid Bz2 size")]
+    #[error("multi-packet response exceeds limits")]
+    MultiPacketTooLarge,
+
+    #[error("multi-packet fragment ID mismatch")]
+    MismatchPacketId,
+
+    #[error("invalid bz2 decompressed size")]
     InvalidBz2Size,
 
-    #[error("Decompressed checksum does not match")]
-    CheckSumMismatch,
+    #[error("decompressed checksum does not match")]
+    ChecksumMismatch,
 
-    #[error("{0}")]
-    Other(&'static str),
+    #[error("no binary chunks found in rules")]
+    NoBinaryChunks,
+
+    #[error("steam ID length exceeds 8 bytes")]
+    SteamIdTooLong,
 }

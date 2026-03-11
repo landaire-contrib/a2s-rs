@@ -126,7 +126,10 @@ impl TryFrom<u8> for ServerType {
             b'd' => Ok(Self::Dedicated),
             b'i' => Ok(Self::NonDedicated),
             b'p' => Ok(Self::SourceTV),
-            _ => Err(Self::Error::Other("Invalid server type")),
+            other => Err(Self::Error::UnexpectedHeader {
+                expected: b'd',
+                actual: other,
+            }),
         }
     }
 }
@@ -150,7 +153,10 @@ impl TryFrom<u8> for ServerOS {
             b'l' => Ok(Self::Linux),
             b'w' => Ok(Self::Windows),
             b'm' | b'o' => Ok(Self::Mac),
-            _ => Err(Self::Error::Other("Invalid environment")),
+            other => Err(Self::Error::UnexpectedHeader {
+                expected: b'l',
+                actual: other,
+            }),
         }
     }
 }
@@ -336,8 +342,12 @@ impl Info {
     }
 
     pub fn from_reader<R: Read>(mut data: R) -> Result<Self> {
-        if data.read_u8()? != 0x49u8 {
-            return Err(Error::InvalidResponse);
+        let header = data.read_u8()?;
+        if header != 0x49u8 {
+            return Err(Error::UnexpectedHeader {
+                expected: 0x49,
+                actual: header,
+            });
         }
 
         let protocol = data.read_u8()?;
