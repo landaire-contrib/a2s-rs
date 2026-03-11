@@ -1,6 +1,6 @@
 ---
 source: crates/a2s/tests/snapshot_test.rs
-assertion_line: 42
+assertion_line: 25
 expression: info
 ---
 Info {

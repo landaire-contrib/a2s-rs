@@ -1,0 +1,71 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+assertion_line: 47
+expression: rules
+---
+[
+    Rule {
+        name: "\u{1}\u{7}",
+        value: "\u{2}\u{1}\u{2}\u{1}\u{2}\u{1}\u{2}\u{11}�2�\u{4}�,�\u{17}Building Fortifications��\u{16}\u{4}��8m\rFlipTransport�85�\u{4}�\u{14}��\u{13}Dutch Army Clothing�\u{10}B^\u{4}�MU]\u{c}BuilderItems�%�\"\u{4}��\u{c}i\u{1b}Un",
+    },
+    Rule {
+        name: "\u{2}\u{7}",
+        value: "cuepa's Civilian Clothing\u{1}\u{2}�;�\u{4}�~0w\u{1f}Cold War Uniforms: Project Iron�\u{13}�.\u{4}��sl\tEar Plugs?,\u{10}\u{1}\u{1}\u{4}�Z��\u{e}MagObfuscation�\u{6dd}\u{1c}\u{4}T��l\rVPPAdm",
+    },
+    Rule {
+        name: "\u{3}\u{7}",
+        value: "inTools\u{1b}\u{18}�\u{1e}\u{4}��\u{1e}b\u{8}CodeLock�QV�\u{4} ���\u{e}Dabs Framework��Im\u{4}\u{1}\u{2}\u{8}'k\u{12}WindstrideClothing�\u{1c}��\u{4}Z츪\tKarmaKrew4*;�\u{4}�$L�\u{14}VanillaRoadPartsPack",
+    },
+    Rule {
+        name: "\u{4}\u{7}",
+        value: "�Ưh\u{4}\u{4}��\\\u{13}Community FrameworkQˌ�\u{4}e�ʴ\u{1b}KarmaKrew Chernarus Balance7�S�\u{4}���\u{7f}\u{16}Advanced Weapon Scopes\u{19}\u{c}bastard.info\u{17}Building-Forti",
+    },
+    Rule {
+        name: "\u{5}\u{7}",
+        value: "fications\u{b}cftoolsRoot\nCodeLockv3\u{b}CooltrainV3\u{5}cynep\u{3}dab\u{4}dayz\tExpansion\u{e}GormirnV2Roads\u{7}Hunterz\u{c}InclementDab\u{6}Inkota\u{e}Jacob_Mango_V3",
+    },
+    Rule {
+        name: "\u{6}\u{7}",
+        value: "\u{5}JESSR\u{10}KarmaKrewDevTeam\u{4}L4DS\u{e}LBmasterPub_v3\u{c}NotABananaV3\tSirKydric\u{3}TRG\u{7}Uncuepa\u{3}VPP\tWardog.v3\u{c}WindstrideV2 https://www.discord.g",
+    },
+    Rule {
+        name: "\u{7}\u{7}",
+        value: "g/KarmaKrew",
+    },
+    Rule {
+        name: "allowedBuild",
+        value: "0",
+    },
+    Rule {
+        name: "clientPort",
+        value: "0",
+    },
+    Rule {
+        name: "dedicated",
+        value: "1",
+    },
+    Rule {
+        name: "island",
+        value: "chernarusplus",
+    },
+    Rule {
+        name: "language",
+        value: "65545",
+    },
+    Rule {
+        name: "platform",
+        value: "win",
+    },
+    Rule {
+        name: "requiredBuild",
+        value: "0",
+    },
+    Rule {
+        name: "requiredVersion",
+        value: "128",
+    },
+    Rule {
+        name: "timeLeft",
+        value: "15",
+    },
+]

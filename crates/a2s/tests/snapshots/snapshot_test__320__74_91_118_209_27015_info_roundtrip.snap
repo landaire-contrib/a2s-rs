@@ -1,7 +1,7 @@
 ---
 source: crates/a2s/tests/snapshot_test.rs
-assertion_line: 19
-expression: info
+assertion_line: 35
+expression: reparsed
 ---
 Info {
     protocol: 17,

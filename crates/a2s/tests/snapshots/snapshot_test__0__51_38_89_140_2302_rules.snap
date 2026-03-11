@@ -1,0 +1,83 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+assertion_line: 47
+expression: rules
+---
+[
+    Rule {
+        name: "\u{1}\n",
+        value: "\u{2}\u{8}\u{1}\u{2}\u{1}\u{2}\u{c}�!!�\u{4}2Ї�\u{15}JD's Animated WeaponsЈz�\u{4}�c��\rAsmondWeapons��\"t\u{4}\u{1f}�\u{18}�\u{c}DayZ Bicycle����\u{4}�34�\u{16}SkyZ - Skybox Overhaul\u{11}J\n�\u{4}'0��\u{1c}Al",
+    },
+    Rule {
+        name: "\u{2}\n",
+        value: "evaric's Clothing Overhaul��Im\u{4}\u{1}\u{2}\u{8}'k\u{12}WindstrideClothing�FP�\u{4}���\u{13}Survivor AnimationsP\u{13}�w\u{4};�\u{5}�\u{f}Mounts & Sights���Z\u{4}.�\u{15}�\u{e}ZERO Dee",
+    },
+    Rule {
+        name: "\u{3}\n",
+        value: "r Isle��^�\u{4}2C�_\u{8}DeerIsle��\u{19}�\u{4}�'9]\u{16}Community Online Tools�Ưh\u{4}\u{4}��\\\u{13}Community FrameworkB\u{3}7ka\u{14}Akol.MountsAndSights\u{6}Alpace\u{3}ALV\u{6}Asmo",
+    },
+    Rule {
+        name: "\u{4}\n",
+        value: "nd\u{4}AWOL\tAzraelMod\u{6}B3TR4Y\u{f}BeautifulPotato\u{4}BGOM\u{5}Buddy\u{c}Building_Key\u{b}cftoolsRoot\u{5}cynep\u{b}CypeRevenge\u{b}daemonforge\tDannyDoom\u{4}dayz\u{e}decea",
+    },
+    Rule {
+        name: "\u{5}\n",
+        value: "sed_steam\ndeerisle59\tdesignful\u{11}ElderWoodZIkeozzy\u{10}FlickeringLights\u{6}FTM228\tGhostWolf\nHAPPYBOMBS\u{b}HuffyPublic\u{7}Hunterz\u{c}InclementDab\u{19}",
+    },
+    Rule {
+        name: "\u{6}\n",
+        value: "Indi_Increased_Lumens_1.5\u{6}Inedia\u{6}Inkota\u{e}Jacob_Mango_V3\u{3}JAD\u{6}JayDee\u{8}M4ketech\u{6}Makoni\u{8}Mikey551\u{7}mikeyxb\tMrZinKNWR\u{c}NathSoftware\u{c}NotAB",
+    },
+    Rule {
+        name: "\u{7}\n",
+        value: "ananaV3\u{5}NoWay\u{6}predek\u{6}Rajjip\tRedFalcon\u{6}ruffaz\u{5}shade\u{2}SP\u{6}sumrak\rTheEmperorFox\nTheOutpost\u{8}THE_WOLF\u{6}THYER5\u{15}VoDxRetextures_Vorian\u{c}VoD",
+    },
+    Rule {
+        name: "\u{8}\n",
+        value: "x_ACO_Fix\u{b}VoDx_Extras\tVoDx_Mags\u{3}VPP\u{8}Welliton\u{c}WindstrideV2\u{2}XM\u{7}Z6Signs\nZenarchist\u{15}ZERO_huffysar15config\tZERO_VoDx�All settings as",
+    },
+    Rule {
+        name: "\t\n",
+        value: " per the Deer Isle map creator with extra clothing and Quality of Life balances. Join the discussion at https://discord.com/inv",
+    },
+    Rule {
+        name: "\n\n",
+        value: "ite/zero-dayz",
+    },
+    Rule {
+        name: "allowedBuild",
+        value: "0",
+    },
+    Rule {
+        name: "clientPort",
+        value: "0",
+    },
+    Rule {
+        name: "dedicated",
+        value: "1",
+    },
+    Rule {
+        name: "island",
+        value: "deerisle",
+    },
+    Rule {
+        name: "language",
+        value: "65545",
+    },
+    Rule {
+        name: "platform",
+        value: "win",
+    },
+    Rule {
+        name: "requiredBuild",
+        value: "0",
+    },
+    Rule {
+        name: "requiredVersion",
+        value: "128",
+    },
+    Rule {
+        name: "timeLeft",
+        value: "15",
+    },
+]

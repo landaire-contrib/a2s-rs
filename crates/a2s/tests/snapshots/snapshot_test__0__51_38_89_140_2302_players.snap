@@ -1,0 +1,35 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+assertion_line: 41
+expression: players
+---
+[
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 5573.51,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 5407.954,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 4633.65,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 2507.7969,
+        the_ship: None,
+    },
+]

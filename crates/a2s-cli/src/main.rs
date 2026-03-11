@@ -13,6 +13,24 @@ fn slug(addr: &str) -> String {
     addr.replace([':', '.', '[', ']'], "_")
 }
 
+/// Resolve the query address from a game address and optional query port offset.
+/// If `query_port_offset` is non-zero, the query port is `game_port + offset`.
+fn resolve_query_addr(game_addr: &str, query_port_offset: i32) -> String {
+    if query_port_offset == 0 {
+        return game_addr.to_string();
+    }
+
+    // Parse the address to extract host and port
+    if let Some((host, port_str)) = game_addr.rsplit_once(':') {
+        if let Ok(game_port) = port_str.parse::<u16>() {
+            let query_port = (game_port as i32 + query_port_offset) as u16;
+            return format!("{host}:{query_port}");
+        }
+    }
+
+    game_addr.to_string()
+}
+
 fn capture_info(client: &A2SClient, addr: &str) -> Option<Vec<u8>> {
     match client.send(&INFO_REQUEST, addr) {
         Ok(data) => {
@@ -39,10 +57,10 @@ fn capture_info(client: &A2SClient, addr: &str) -> Option<Vec<u8>> {
     }
 }
 
-fn capture(client: &A2SClient, addr: &str, output_dir: &Path) {
-    let s = slug(addr);
+fn capture(client: &A2SClient, game_addr: &str, query_addr: &str, output_dir: &Path) {
+    let s = slug(game_addr);
 
-    let info_data = capture_info(client, addr);
+    let info_data = capture_info(client, query_addr);
 
     // Parse info to get app_id for directory organization
     let app_id = info_data
@@ -59,12 +77,12 @@ fn capture(client: &A2SClient, addr: &str, output_dir: &Path) {
         write_fixture(&dir, &s, "info", data);
     }
 
-    match client.do_challenge_request(addr, &PLAYER_REQUEST) {
+    match client.do_challenge_request(query_addr, &PLAYER_REQUEST) {
         Ok(data) => write_fixture(&dir, &s, "players", &data),
         Err(e) => eprintln!("  players failed: {e}"),
     }
 
-    match client.do_challenge_request(addr, &RULES_REQUEST) {
+    match client.do_challenge_request(query_addr, &RULES_REQUEST) {
         Ok(data) => write_fixture(&dir, &s, "rules", &data),
         Err(e) => eprintln!("  rules failed: {e}"),
     }
@@ -79,18 +97,53 @@ fn write_fixture(dir: &Path, slug: &str, kind: &str, data: &[u8]) {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    if args.len() < 3 {
-        eprintln!("Usage: {} <output_dir> <addr> [<addr>...]", args[0]);
+
+    let mut query_port_offset: i32 = 0;
+    let mut positional = Vec::new();
+    let mut iter = args[1..].iter();
+
+    while let Some(arg) = iter.next() {
+        match arg.as_str() {
+            "--query-port-offset" => {
+                let val = iter
+                    .next()
+                    .unwrap_or_else(|| {
+                        eprintln!("--query-port-offset requires a value");
+                        std::process::exit(1);
+                    });
+                query_port_offset = val.parse().unwrap_or_else(|e| {
+                    eprintln!("invalid --query-port-offset value: {e}");
+                    std::process::exit(1);
+                });
+            }
+            _ => positional.push(arg.as_str()),
+        }
+    }
+
+    if positional.len() < 2 {
+        eprintln!(
+            "Usage: {} [--query-port-offset N] <output_dir> <addr> [<addr>...]",
+            args[0]
+        );
+        eprintln!();
+        eprintln!("Options:");
+        eprintln!("  --query-port-offset N  Add N to each game port to get the query port");
+        eprintln!("                         (e.g., 24714 for DayZ)");
         std::process::exit(1);
     }
 
-    let output_dir = Path::new(&args[1]);
+    let output_dir = Path::new(positional[0]);
     fs::create_dir_all(output_dir).expect("failed to create output directory");
 
     let client = A2SClient::new().expect("failed to create A2S client");
 
-    for addr in &args[2..] {
-        println!("Querying {addr}...");
-        capture(&client, addr, output_dir);
+    for game_addr in &positional[1..] {
+        let query_addr = resolve_query_addr(game_addr, query_port_offset);
+        if query_port_offset != 0 {
+            println!("Querying {game_addr} (query port: {query_addr})...");
+        } else {
+            println!("Querying {game_addr}...");
+        }
+        capture(&client, game_addr, &query_addr, output_dir);
     }
 }

@@ -1,6 +1,6 @@
 ---
 source: crates/a2s/tests/snapshot_test.rs
-assertion_line: 56
+assertion_line: 47
 expression: rules
 ---
 [

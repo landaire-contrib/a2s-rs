@@ -1,6 +1,6 @@
 ---
 source: crates/a2s/tests/snapshot_test.rs
-assertion_line: 26
+assertion_line: 41
 expression: players
 ---
 [

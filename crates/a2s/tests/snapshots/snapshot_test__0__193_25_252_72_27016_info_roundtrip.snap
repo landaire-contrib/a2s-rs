@@ -1,0 +1,38 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+assertion_line: 35
+expression: reparsed
+---
+Info {
+    protocol: 17,
+    name: "KarmaKrew Alteria EU - 1PP | VANILLA + MODS",
+    map: "alteria",
+    folder: "dayz",
+    game: "https://www.discord.gg/KarmaKrew",
+    app_id: 0,
+    players: 3,
+    max_players: 70,
+    bots: 0,
+    server_type: Dedicated,
+    server_os: Windows,
+    visibility: false,
+    vac: true,
+    the_ship: None,
+    version: "1.28.161464",
+    edf: 177,
+    extended_server_info: ExtendedServerInfo {
+        port: Some(
+            2302,
+        ),
+        steam_id: Some(
+            90282730690121730,
+        ),
+        keywords: Some(
+            "battleye,no3rd,external,privHive,shard100,lqs0,etm2.000000,entm11.000000,mod,07:00",
+        ),
+        game_id: Some(
+            221100,
+        ),
+    },
+    source_tv: None,
+}
