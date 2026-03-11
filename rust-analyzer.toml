@@ -1,0 +1,4 @@
+[cargo]
+# Don't use "all" features — the `async` feature replaces sync APIs entirely,
+# which breaks analysis of crates that use the sync API (like a2s-cli).
+features = ["__private", "serialization"]

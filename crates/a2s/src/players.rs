@@ -20,7 +20,8 @@ use crate::ReadCString;
 use crate::errors::Error;
 use crate::errors::Result;
 
-const PLAYER_REQUEST: [u8; 5] = [0xff, 0xff, 0xff, 0xff, 0x55];
+#[doc(hidden)]
+pub const PLAYER_REQUEST: [u8; 5] = [0xff, 0xff, 0xff, 0xff, 0x55];
 
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]

@@ -1,0 +1,35 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+assertion_line: 26
+expression: players
+---
+[
+    Player {
+        index: 0,
+        name: "[US]officer friendly",
+        score: 32,
+        duration: 7834.16,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "[US]Vrod",
+        score: 37,
+        duration: 4921.683,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "[AU]DROP BEAR :)",
+        score: 34,
+        duration: 3174.6628,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "[CA][FJC] Frankenstein34",
+        score: 6,
+        duration: 543.19525,
+        the_ship: None,
+    },
+]

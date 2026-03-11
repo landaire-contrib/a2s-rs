@@ -20,7 +20,8 @@ use crate::ReadCString;
 use crate::errors::Error;
 use crate::errors::Result;
 
-const RULES_REQUEST: [u8; 5] = [0xFF, 0xFF, 0xFF, 0xFF, 0x56];
+#[doc(hidden)]
+pub const RULES_REQUEST: [u8; 5] = [0xFF, 0xFF, 0xFF, 0xFF, 0x56];
 
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]

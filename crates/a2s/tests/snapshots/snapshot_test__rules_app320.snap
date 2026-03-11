@@ -1,0 +1,407 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+assertion_line: 33
+expression: rules
+---
+[
+    Rule {
+        name: "antipingmask_version",
+        value: "1.6.0",
+    },
+    Rule {
+        name: "coop",
+        value: "0",
+    },
+    Rule {
+        name: "countrynick_version",
+        value: "1.1.1",
+    },
+    Rule {
+        name: "deathmatch",
+        value: "1",
+    },
+    Rule {
+        name: "decalfrequency",
+        value: "60",
+    },
+    Rule {
+        name: "goto_version",
+        value: "1.2",
+    },
+    Rule {
+        name: "hpk_lite_version",
+        value: "1.0.0.1",
+    },
+    Rule {
+        name: "metamod_version",
+        value: "1.11.0-dev+1156V",
+    },
+    Rule {
+        name: "mp_allowNPCs",
+        value: "1",
+    },
+    Rule {
+        name: "mp_autocrosshair",
+        value: "1",
+    },
+    Rule {
+        name: "mp_autoteambalance",
+        value: "1",
+    },
+    Rule {
+        name: "mp_disable_respawn_times",
+        value: "0",
+    },
+    Rule {
+        name: "mp_fadetoblack",
+        value: "0",
+    },
+    Rule {
+        name: "mp_falldamage",
+        value: "1",
+    },
+    Rule {
+        name: "mp_flashlight",
+        value: "1",
+    },
+    Rule {
+        name: "mp_footsteps",
+        value: "1",
+    },
+    Rule {
+        name: "mp_forceautoteam",
+        value: "0",
+    },
+    Rule {
+        name: "mp_forcerespawn",
+        value: "0",
+    },
+    Rule {
+        name: "mp_fraglimit",
+        value: "50",
+    },
+    Rule {
+        name: "mp_friendlyfire",
+        value: "0",
+    },
+    Rule {
+        name: "mp_holiday_nogifts",
+        value: "0",
+    },
+    Rule {
+        name: "mp_match_end_at_timelimit",
+        value: "0",
+    },
+    Rule {
+        name: "mp_maxrounds",
+        value: "0",
+    },
+    Rule {
+        name: "mp_respawnwavetime",
+        value: "10.0",
+    },
+    Rule {
+        name: "mp_scrambleteams_auto",
+        value: "1",
+    },
+    Rule {
+        name: "mp_scrambleteams_auto_windifference",
+        value: "2",
+    },
+    Rule {
+        name: "mp_stalemate_enable",
+        value: "0",
+    },
+    Rule {
+        name: "mp_stalemate_meleeonly",
+        value: "0",
+    },
+    Rule {
+        name: "mp_teamlist",
+        value: "hgrunt;scientist",
+    },
+    Rule {
+        name: "mp_teamplay",
+        value: "0",
+    },
+    Rule {
+        name: "mp_timelimit",
+        value: "20",
+    },
+    Rule {
+        name: "mp_tournament",
+        value: "0",
+    },
+    Rule {
+        name: "mp_weaponstay",
+        value: "0",
+    },
+    Rule {
+        name: "mp_winlimit",
+        value: "0",
+    },
+    Rule {
+        name: "nextlevel",
+        value: "",
+    },
+    Rule {
+        name: "r_AirboatViewDampenDamp",
+        value: "1.0",
+    },
+    Rule {
+        name: "r_AirboatViewDampenFreq",
+        value: "7.0",
+    },
+    Rule {
+        name: "r_AirboatViewZHeight",
+        value: "0.0",
+    },
+    Rule {
+        name: "r_JeepViewDampenDamp",
+        value: "1.0",
+    },
+    Rule {
+        name: "r_JeepViewDampenFreq",
+        value: "7.0",
+    },
+    Rule {
+        name: "r_JeepViewZHeight",
+        value: "10.0",
+    },
+    Rule {
+        name: "r_VehicleViewDampen",
+        value: "1",
+    },
+    Rule {
+        name: "smac_version",
+        value: "fhsmac",
+    },
+    Rule {
+        name: "sm_advertisements_version",
+        value: "0.5.5.1",
+    },
+    Rule {
+        name: "sm_afkm_version",
+        value: "3.4.3",
+    },
+    Rule {
+        name: "sm_al_version",
+        value: "1.0",
+    },
+    Rule {
+        name: "sm_amacrowbar_version",
+        value: "1.0",
+    },
+    Rule {
+        name: "sm_antiratehack_version",
+        value: "1.1",
+    },
+    Rule {
+        name: "sm_autoadmincop_version",
+        value: "Alpha 1.0.1",
+    },
+    Rule {
+        name: "sm_cbomb_version",
+        value: "1.1",
+    },
+    Rule {
+        name: "sm_damagesound_version",
+        value: "1.7",
+    },
+    Rule {
+        name: "sm_foocrowbar_version",
+        value: "0.24",
+    },
+    Rule {
+        name: "sm_modelchooser_hl2dm_version",
+        value: "0.3",
+    },
+    Rule {
+        name: "sm_name_checker",
+        value: "1.5",
+    },
+    Rule {
+        name: "sm_nextmap",
+        value: "dm_sniper_sunset_v2",
+    },
+    Rule {
+        name: "sm_quakesoundsv3_version",
+        value: "3.5.0",
+    },
+    Rule {
+        name: "sm_saysounds_hybrid_version",
+        value: "4.0.8",
+    },
+    Rule {
+        name: "sm_supercmds_version",
+        value: "0.60",
+    },
+    Rule {
+        name: "sm_swearreplace_version",
+        value: "1.4",
+    },
+    Rule {
+        name: "sm_weaponzoom_version",
+        value: "1.6c",
+    },
+    Rule {
+        name: "sourcemod_version",
+        value: "1.13.0.7203",
+    },
+    Rule {
+        name: "superlogs_hl2mp_version",
+        value: "1.1.3",
+    },
+    Rule {
+        name: "sv_accelerate",
+        value: "10",
+    },
+    Rule {
+        name: "sv_airaccelerate",
+        value: "10",
+    },
+    Rule {
+        name: "sv_alltalk",
+        value: "1",
+    },
+    Rule {
+        name: "sv_bounce",
+        value: "0",
+    },
+    Rule {
+        name: "sv_cheats",
+        value: "0",
+    },
+    Rule {
+        name: "sv_contact",
+        value: "fuzionhead@gmail.com",
+    },
+    Rule {
+        name: "sv_footsteps",
+        value: "1",
+    },
+    Rule {
+        name: "sv_friction",
+        value: "4",
+    },
+    Rule {
+        name: "sv_gravity",
+        value: "75",
+    },
+    Rule {
+        name: "sv_hl2mp_item_respawn_time",
+        value: "30",
+    },
+    Rule {
+        name: "sv_hl2mp_weapon_respawn_time",
+        value: "20",
+    },
+    Rule {
+        name: "sv_maxspeed",
+        value: "420",
+    },
+    Rule {
+        name: "sv_maxusrcmdprocessticks",
+        value: "24",
+    },
+    Rule {
+        name: "sv_noclipaccelerate",
+        value: "5",
+    },
+    Rule {
+        name: "sv_noclipspeed",
+        value: "5",
+    },
+    Rule {
+        name: "sv_password",
+        value: "0",
+    },
+    Rule {
+        name: "sv_pausable",
+        value: "0",
+    },
+    Rule {
+        name: "sv_report_client_settings",
+        value: "0",
+    },
+    Rule {
+        name: "sv_rollangle",
+        value: "0",
+    },
+    Rule {
+        name: "sv_rollspeed",
+        value: "200",
+    },
+    Rule {
+        name: "sv_specaccelerate",
+        value: "5",
+    },
+    Rule {
+        name: "sv_specnoclip",
+        value: "1",
+    },
+    Rule {
+        name: "sv_specspeed",
+        value: "3",
+    },
+    Rule {
+        name: "sv_steamgroup",
+        value: "",
+    },
+    Rule {
+        name: "sv_stepsize",
+        value: "18",
+    },
+    Rule {
+        name: "sv_stopspeed",
+        value: "100",
+    },
+    Rule {
+        name: "sv_tags",
+        value: "alltalk,gravity",
+    },
+    Rule {
+        name: "sv_voiceenable",
+        value: "1",
+    },
+    Rule {
+        name: "sv_vote_quorum_ratio",
+        value: "0.6",
+    },
+    Rule {
+        name: "sv_wateraccelerate",
+        value: "10",
+    },
+    Rule {
+        name: "sv_waterfriction",
+        value: "1",
+    },
+    Rule {
+        name: "tf_arena_max_streak",
+        value: "3",
+    },
+    Rule {
+        name: "tf_arena_preround_time",
+        value: "10",
+    },
+    Rule {
+        name: "tf_arena_round_time",
+        value: "0",
+    },
+    Rule {
+        name: "tf_arena_use_queue",
+        value: "1",
+    },
+    Rule {
+        name: "tv_enable",
+        value: "1",
+    },
+    Rule {
+        name: "tv_password",
+        value: "1",
+    },
+    Rule {
+        name: "tv_relaypassword",
+        value: "0",
+    },
+]

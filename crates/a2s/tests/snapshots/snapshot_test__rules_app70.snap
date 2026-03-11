@@ -1,0 +1,215 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+assertion_line: 56
+expression: rules
+---
+[
+    Rule {
+        name: "allow_spectators",
+        value: "0.0",
+    },
+    Rule {
+        name: "coop",
+        value: "0",
+    },
+    Rule {
+        name: "deathmatch",
+        value: "1",
+    },
+    Rule {
+        name: "decalfrequency",
+        value: "30",
+    },
+    Rule {
+        name: "edgefriction",
+        value: "2",
+    },
+    Rule {
+        name: "max_queries_sec",
+        value: "1",
+    },
+    Rule {
+        name: "max_queries_sec_global",
+        value: "1",
+    },
+    Rule {
+        name: "max_queries_window",
+        value: "1",
+    },
+    Rule {
+        name: "metamod_version",
+        value: "1.20",
+    },
+    Rule {
+        name: "mp_allowmonsters",
+        value: "1",
+    },
+    Rule {
+        name: "mp_autocrosshair",
+        value: "1",
+    },
+    Rule {
+        name: "mp_chattime",
+        value: "10",
+    },
+    Rule {
+        name: "mp_consistency",
+        value: "1",
+    },
+    Rule {
+        name: "mp_falldamage",
+        value: "0",
+    },
+    Rule {
+        name: "mp_flashlight",
+        value: "1",
+    },
+    Rule {
+        name: "mp_footsteps",
+        value: "1",
+    },
+    Rule {
+        name: "mp_forcerespawn",
+        value: "1",
+    },
+    Rule {
+        name: "mp_fraglimit",
+        value: "0",
+    },
+    Rule {
+        name: "mp_fragsleft",
+        value: "0",
+    },
+    Rule {
+        name: "mp_friendlyfire",
+        value: "0",
+    },
+    Rule {
+        name: "mp_logfile",
+        value: "0",
+    },
+    Rule {
+        name: "mp_teamlist",
+        value: "hgrunt;scientist",
+    },
+    Rule {
+        name: "mp_teamplay",
+        value: "0",
+    },
+    Rule {
+        name: "mp_timeleft",
+        value: "703",
+    },
+    Rule {
+        name: "mp_timelimit",
+        value: "15",
+    },
+    Rule {
+        name: "mp_weaponstay",
+        value: "0",
+    },
+    Rule {
+        name: "pausable",
+        value: "0",
+    },
+    Rule {
+        name: "sv_accelerate",
+        value: "10",
+    },
+    Rule {
+        name: "sv_airaccelerate",
+        value: "10",
+    },
+    Rule {
+        name: "sv_allowupload",
+        value: "1",
+    },
+    Rule {
+        name: "sv_allow_autoaim",
+        value: "0",
+    },
+    Rule {
+        name: "sv_allow_shaders",
+        value: "0",
+    },
+    Rule {
+        name: "sv_alltalk",
+        value: "0",
+    },
+    Rule {
+        name: "sv_bounce",
+        value: "1",
+    },
+    Rule {
+        name: "sv_cheats",
+        value: "0",
+    },
+    Rule {
+        name: "sv_clienttrace",
+        value: "3.5",
+    },
+    Rule {
+        name: "sv_contact",
+        value: "megabrutal+hlds@gmail.com",
+    },
+    Rule {
+        name: "sv_friction",
+        value: "4",
+    },
+    Rule {
+        name: "sv_gravity",
+        value: "800",
+    },
+    Rule {
+        name: "sv_logblocks",
+        value: "0",
+    },
+    Rule {
+        name: "sv_maxrate",
+        value: "100000",
+    },
+    Rule {
+        name: "sv_maxspeed",
+        value: "270",
+    },
+    Rule {
+        name: "sv_minrate",
+        value: "1000",
+    },
+    Rule {
+        name: "sv_password",
+        value: "0",
+    },
+    Rule {
+        name: "sv_proxies",
+        value: "0",
+    },
+    Rule {
+        name: "sv_stepsize",
+        value: "18",
+    },
+    Rule {
+        name: "sv_stopspeed",
+        value: "100",
+    },
+    Rule {
+        name: "sv_uploadmax",
+        value: "0.5",
+    },
+    Rule {
+        name: "sv_uploadmaxcount",
+        value: "10",
+    },
+    Rule {
+        name: "sv_voiceenable",
+        value: "1",
+    },
+    Rule {
+        name: "sv_wateraccelerate",
+        value: "10",
+    },
+    Rule {
+        name: "sv_waterfriction",
+        value: "1",
+    },
+]

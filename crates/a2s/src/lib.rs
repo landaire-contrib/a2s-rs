@@ -197,8 +197,9 @@ impl A2SClient {
         Ok(self)
     }
 
+    #[doc(hidden)]
     #[cfg(feature = "async")]
-    async fn send<A: ToSocketAddrs>(&self, payload: &[u8], addr: A) -> Result<Vec<u8>> {
+    pub async fn send<A: ToSocketAddrs>(&self, payload: &[u8], addr: A) -> Result<Vec<u8>> {
         future_timeout!(self.timeout, self.socket.send_to(payload, addr))?;
 
         let mut data = vec![0; self.max_size];
@@ -312,8 +313,9 @@ impl A2SClient {
         }
     }
 
+    #[doc(hidden)]
     #[cfg(feature = "async")]
-    async fn do_challenge_request<A: ToSocketAddrs>(
+    pub async fn do_challenge_request<A: ToSocketAddrs>(
         &self,
         addr: A,
         header: &[u8],
@@ -341,8 +343,9 @@ impl A2SClient {
         Ok(data)
     }
 
+    #[doc(hidden)]
     #[cfg(not(feature = "async"))]
-    fn send<A: ToSocketAddrs>(&self, payload: &[u8], addr: A) -> Result<Vec<u8>> {
+    pub fn send<A: ToSocketAddrs>(&self, payload: &[u8], addr: A) -> Result<Vec<u8>> {
         self.socket.send_to(payload, addr)?;
 
         let mut data = vec![0; self.max_size];
@@ -451,8 +454,13 @@ impl A2SClient {
         }
     }
 
+    #[doc(hidden)]
     #[cfg(not(feature = "async"))]
-    fn do_challenge_request<A: ToSocketAddrs>(&self, addr: A, header: &[u8]) -> Result<Vec<u8>> {
+    pub fn do_challenge_request<A: ToSocketAddrs>(
+        &self,
+        addr: A,
+        header: &[u8],
+    ) -> Result<Vec<u8>> {
         let packet = Vec::with_capacity(9);
         let mut packet = Cursor::new(packet);
 

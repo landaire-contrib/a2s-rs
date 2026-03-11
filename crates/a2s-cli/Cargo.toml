@@ -1,0 +1,8 @@
+[package]
+name = "a2s-cli"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+a2s = { path = "../a2s", features = ["__private"] }
