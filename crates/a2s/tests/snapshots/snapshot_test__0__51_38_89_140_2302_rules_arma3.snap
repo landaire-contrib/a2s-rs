@@ -1,0 +1,236 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+expression: arma3
+---
+Arma3Rules {
+    version: 2050,
+    mods: [
+        Mod {
+            hash: ModHash(
+                3978371544,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3297234994,
+            ),
+            name: "JD\'s Animated Weapons",
+        },
+        Mod {
+            hash: ModHash(
+                3195701456,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3640419203,
+            ),
+            name: "AsmondWeapons",
+        },
+        Mod {
+            hash: ModHash(
+                1948434610,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2971190303,
+            ),
+            name: "DayZ Bicycle",
+        },
+        Mod {
+            hash: ModHash(
+                4009213585,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2536780687,
+            ),
+            name: "SkyZ - Skybox Overhaul",
+        },
+        Mod {
+            hash: ModHash(
+                3641330193,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3354931239,
+            ),
+            name: "Alevaric\'s Clothing Overhaul",
+        },
+        Mod {
+            hash: ModHash(
+                1833561340,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1797720064,
+            ),
+            name: "WindstrideClothing",
+        },
+        Mod {
+            hash: ModHash(
+                3125823199,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2918418331,
+            ),
+            name: "Survivor Animations",
+        },
+        Mod {
+            hash: ModHash(
+                2005603152,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3322252091,
+            ),
+            name: "Mounts & Sights",
+        },
+        Mod {
+            hash: ModHash(
+                1522588587,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3541407790,
+            ),
+            name: "ZERO Deer Isle",
+        },
+        Mod {
+            hash: ModHash(
+                3697194411,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1602372402,
+            ),
+            name: "DeerIsle",
+        },
+        Mod {
+            hash: ModHash(
+                3021599184,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1564026768,
+            ),
+            name: "Community Online Tools",
+        },
+        Mod {
+            hash: ModHash(
+                1756350145,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1559212036,
+            ),
+            name: "Community Framework",
+        },
+    ],
+    signatures: [
+        "7ka",
+        "Akol.MountsAndSights",
+        "Alpace",
+        "ALV",
+        "Asmond",
+        "AWOL",
+        "AzraelMod",
+        "B3TR4Y",
+        "BeautifulPotato",
+        "BGOM",
+        "Buddy",
+        "Building_Key",
+        "cftoolsRoot",
+        "cynep",
+        "CypeRevenge",
+        "daemonforge",
+        "DannyDoom",
+        "dayz",
+        "deceased_steam",
+        "deerisle59",
+        "designful",
+        "ElderWoodZIkeozzy",
+        "FlickeringLights",
+        "FTM228",
+        "GhostWolf",
+        "HAPPYBOMBS",
+        "HuffyPublic",
+        "Hunterz",
+        "InclementDab",
+        "Indi_Increased_Lumens_1.5",
+        "Inedia",
+        "Inkota",
+        "Jacob_Mango_V3",
+        "JAD",
+        "JayDee",
+        "M4ketech",
+        "Makoni",
+        "Mikey551",
+        "mikeyxb",
+        "MrZinKNWR",
+        "NathSoftware",
+        "NotABananaV3",
+        "NoWay",
+        "predek",
+        "Rajjip",
+        "RedFalcon",
+        "ruffaz",
+        "shade",
+        "SP",
+        "sumrak",
+        "TheEmperorFox",
+        "TheOutpost",
+        "THE_WOLF",
+        "THYER5",
+        "VoDxRetextures_Vorian",
+        "VoDx_ACO_Fix",
+        "VoDx_Extras",
+        "VoDx_Mags",
+        "VPP",
+        "Welliton",
+        "WindstrideV2",
+        "XM",
+        "Z6Signs",
+        "Zenarchist",
+        "ZERO_huffysar15config",
+        "ZERO_VoDx",
+    ],
+    description: "\x9bAll settings as per the Deer Isle map creator with extra clothing and Quality of Life balances. Join the discussion at https://discord.com/invite/zero-dayz",
+    rules: [
+        Rule {
+            name: "allowedBuild",
+            value: "0",
+        },
+        Rule {
+            name: "clientPort",
+            value: "0",
+        },
+        Rule {
+            name: "dedicated",
+            value: "1",
+        },
+        Rule {
+            name: "island",
+            value: "deerisle",
+        },
+        Rule {
+            name: "language",
+            value: "65545",
+        },
+        Rule {
+            name: "platform",
+            value: "win",
+        },
+        Rule {
+            name: "requiredBuild",
+            value: "0",
+        },
+        Rule {
+            name: "requiredVersion",
+            value: "128",
+        },
+        Rule {
+            name: "timeLeft",
+            value: "15",
+        },
+    ],
+}

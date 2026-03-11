@@ -1,0 +1,202 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+expression: arma3
+---
+Arma3Rules {
+    version: 2,
+    mods: [
+        Mod {
+            hash: ModHash(
+                3562807493,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2857994912,
+            ),
+            name: "Zenarchist\'s Notes Mod",
+        },
+        Mod {
+            hash: ModHash(
+                1833561340,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1797720064,
+            ),
+            name: "WindstrideClothing",
+        },
+        Mod {
+            hash: ModHash(
+                2639515703,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2143128974,
+            ),
+            name: "Advanced Weapon Scopes",
+        },
+        Mod {
+            hash: ModHash(
+                2225681645,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2141780688,
+            ),
+            name: "ArmA 2 ACR Weapon Pack",
+        },
+        Mod {
+            hash: ModHash(
+                3195701456,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3640419203,
+            ),
+            name: "AsmondWeapons",
+        },
+        Mod {
+            hash: ModHash(
+                1270693006,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2155726353,
+            ),
+            name: "Mortys Weapons",
+        },
+        Mod {
+            hash: ModHash(
+                4105518223,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2793893086,
+            ),
+            name: "DayZ-Expansion-Animations",
+        },
+        Mod {
+            hash: ModHash(
+                3349979684,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2291785437,
+            ),
+            name: "DayZ-Expansion-Vehicles",
+        },
+        Mod {
+            hash: ModHash(
+                636905243,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2291785308,
+            ),
+            name: "DayZ-Expansion-Core",
+        },
+        Mod {
+            hash: ModHash(
+                1950001801,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2116157322,
+            ),
+            name: "DayZ-Expansion-Licensed",
+        },
+        Mod {
+            hash: ModHash(
+                434366314,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2110459075,
+            ),
+            name: "DayOne",
+        },
+        Mod {
+            hash: ModHash(
+                3847639521,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2545327648,
+            ),
+            name: "Dabs Framework",
+        },
+        Mod {
+            hash: ModHash(
+                3021599184,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1564026768,
+            ),
+            name: "Community Online Tools",
+        },
+        Mod {
+            hash: ModHash(
+                1756350145,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1559212036,
+            ),
+            name: "Community Framework",
+        },
+    ],
+    signatures: [
+        "Asmond",
+        "cftoolsRoot",
+        "dab",
+        "dayz",
+        "Expansion",
+        "Inkota",
+        "Jacob_Mango_V3",
+        "liquidrock",
+        "Mandibull",
+        "TTC",
+        "WindstrideV2",
+        "Zenarchist",
+    ],
+    description: "OVanilla-ish with no base building. Have an adventure! https://discord.gg/dayone",
+    rules: [
+        Rule {
+            name: "allowedBuild",
+            value: "0",
+        },
+        Rule {
+            name: "clientPort",
+            value: "0",
+        },
+        Rule {
+            name: "dedicated",
+            value: "1",
+        },
+        Rule {
+            name: "island",
+            value: "enoch",
+        },
+        Rule {
+            name: "language",
+            value: "65545",
+        },
+        Rule {
+            name: "platform",
+            value: "win",
+        },
+        Rule {
+            name: "requiredBuild",
+            value: "0",
+        },
+        Rule {
+            name: "requiredVersion",
+            value: "128",
+        },
+        Rule {
+            name: "timeLeft",
+            value: "15",
+        },
+    ],
+}

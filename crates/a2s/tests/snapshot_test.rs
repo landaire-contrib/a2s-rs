@@ -4,6 +4,8 @@ use a2s::DeOptions;
 use a2s::info::Info;
 use a2s::players::Player;
 use a2s::rules::Rule;
+#[cfg(feature = "arma3")]
+use a2s::rules::arma3::Arma3Rules;
 
 fn fixture(path: &str) -> Vec<u8> {
     let full = format!("tests/fixtures/{path}");
@@ -45,6 +47,15 @@ fn test_rules(path: &str) {
     let data = fixture(path);
     let rules = Rule::from_reader(data.as_slice()).unwrap();
     insta::assert_debug_snapshot!(snap_name(path), rules);
+}
+
+#[cfg(feature = "arma3")]
+fn test_arma3_rules(path: &str) {
+    let data = fixture(path);
+    let rules = Rule::from_reader(data.as_slice()).unwrap();
+    let arma3 = Arma3Rules::from_rules(&rules).unwrap();
+    let name = format!("{}_arma3", snap_name(path));
+    insta::assert_debug_snapshot!(name, arma3);
 }
 
 // -- App 320 (Half-Life 2: Deathmatch) --
@@ -136,4 +147,130 @@ fn rules_dayz_dayzero_deerisle() {
 #[test]
 fn info_roundtrip_dayz_dayzero_deerisle() {
     test_info_roundtrip("0/51_38_89_140_2302_info.bin");
+}
+
+// -- DayOne (Chernarus) --
+
+#[test]
+fn info_dayone_chernarus() {
+    test_info("0/172_111_51_218_2402_info.bin");
+}
+
+#[test]
+fn players_dayone_chernarus() {
+    test_players("0/172_111_51_218_2402_players.bin", &DeOptions::default());
+}
+
+#[test]
+fn rules_dayone_chernarus() {
+    test_rules("0/172_111_51_218_2402_rules.bin");
+}
+
+#[test]
+fn info_roundtrip_dayone_chernarus() {
+    test_info_roundtrip("0/172_111_51_218_2402_info.bin");
+}
+
+// -- DayOne (Livonia) --
+
+#[test]
+fn info_dayone_livonia() {
+    test_info("0/172_111_51_218_2302_info.bin");
+}
+
+#[test]
+fn players_dayone_livonia() {
+    test_players("0/172_111_51_218_2302_players.bin", &DeOptions::default());
+}
+
+#[test]
+fn rules_dayone_livonia() {
+    test_rules("0/172_111_51_218_2302_rules.bin");
+}
+
+#[test]
+fn info_roundtrip_dayone_livonia() {
+    test_info_roundtrip("0/172_111_51_218_2302_info.bin");
+}
+
+// -- DayOne (Namalsk #1) --
+
+#[test]
+fn info_dayone_namalsk1() {
+    test_info("0/172_111_51_213_2302_info.bin");
+}
+
+#[test]
+fn players_dayone_namalsk1() {
+    test_players("0/172_111_51_213_2302_players.bin", &DeOptions::default());
+}
+
+#[test]
+fn rules_dayone_namalsk1() {
+    test_rules("0/172_111_51_213_2302_rules.bin");
+}
+
+#[test]
+fn info_roundtrip_dayone_namalsk1() {
+    test_info_roundtrip("0/172_111_51_213_2302_info.bin");
+}
+
+// -- DayOne (Namalsk #2) --
+
+#[test]
+fn info_dayone_namalsk2() {
+    test_info("0/172_111_51_213_2402_info.bin");
+}
+
+#[test]
+fn players_dayone_namalsk2() {
+    test_players("0/172_111_51_213_2402_players.bin", &DeOptions::default());
+}
+
+#[test]
+fn rules_dayone_namalsk2() {
+    test_rules("0/172_111_51_213_2402_rules.bin");
+}
+
+#[test]
+fn info_roundtrip_dayone_namalsk2() {
+    test_info_roundtrip("0/172_111_51_213_2402_info.bin");
+}
+
+// -- Arma 3 rules parsing --
+
+#[test]
+#[cfg(feature = "arma3")]
+fn arma3_rules_dayone_chernarus() {
+    test_arma3_rules("0/172_111_51_218_2402_rules.bin");
+}
+
+#[test]
+#[cfg(feature = "arma3")]
+fn arma3_rules_dayone_livonia() {
+    test_arma3_rules("0/172_111_51_218_2302_rules.bin");
+}
+
+#[test]
+#[cfg(feature = "arma3")]
+fn arma3_rules_dayone_namalsk1() {
+    test_arma3_rules("0/172_111_51_213_2302_rules.bin");
+}
+
+#[test]
+#[cfg(feature = "arma3")]
+fn arma3_rules_dayone_namalsk2() {
+    test_arma3_rules("0/172_111_51_213_2402_rules.bin");
+}
+
+#[test]
+#[cfg(feature = "arma3")]
+fn arma3_rules_dayzero_deerisle() {
+    test_arma3_rules("0/51_38_89_140_2302_rules.bin");
+}
+
+#[test]
+#[cfg(feature = "arma3")]
+fn arma3_rules_karmakrew_chernarus() {
+    test_arma3_rules("0/193_25_252_55_27016_rules.bin");
 }

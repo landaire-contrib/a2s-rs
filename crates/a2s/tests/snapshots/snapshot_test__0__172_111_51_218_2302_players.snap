@@ -1,0 +1,83 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+expression: players
+---
+[
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 9253.496,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 9253.297,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 9252.253,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 9222.999,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 9104.774,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 9075.206,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 8145.837,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 7999.8193,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 5811.536,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 4970.1606,
+        the_ship: None,
+    },
+    Player {
+        index: 0,
+        name: "",
+        score: 0,
+        duration: 2511.1245,
+        the_ship: None,
+    },
+]

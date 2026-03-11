@@ -1,0 +1,245 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+expression: arma3
+---
+Arma3Rules {
+    version: 2,
+    mods: [
+        Mod {
+            hash: ModHash(
+                3118609110,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2670506982,
+            ),
+            name: "Building Fortifications",
+        },
+        Mod {
+            hash: ModHash(
+                380625072,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1832448183,
+            ),
+            name: "FlipTransport",
+        },
+        Mod {
+            hash: ModHash(
+                2721396928,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3097629884,
+            ),
+            name: "Dutch Army Clothing",
+        },
+        Mod {
+            hash: ModHash(
+                1581387985,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1565871491,
+            ),
+            name: "BuilderItems",
+        },
+        Mod {
+            hash: ModHash(
+                579020178,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1762444175,
+            ),
+            name: "Uncuepa\'s Civilian Clothing",
+        },
+        Mod {
+            hash: ModHash(
+                2621155584,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1999666859,
+            ),
+            name: "Cold War Uniforms: Project Iron",
+        },
+        Mod {
+            hash: ModHash(
+                784864143,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1819514788,
+            ),
+            name: "Ear Plugs",
+        },
+        Mod {
+            hash: ModHash(
+                17837119,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2449234595,
+            ),
+            name: "MagObfuscation",
+        },
+        Mod {
+            hash: ModHash(
+                480107488,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1828439124,
+            ),
+            name: "VPPAdminTools",
+        },
+        Mod {
+            hash: ModHash(
+                517675035,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1646187754,
+            ),
+            name: "CodeLock",
+        },
+        Mod {
+            hash: ModHash(
+                3847639521,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2545327648,
+            ),
+            name: "Dabs Framework",
+        },
+        Mod {
+            hash: ModHash(
+                1833561340,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1797720064,
+            ),
+            name: "WindstrideClothing",
+        },
+        Mod {
+            hash: ModHash(
+                3370065146,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2864245850,
+            ),
+            name: "KarmaKrew",
+        },
+        Mod {
+            hash: ModHash(
+                3090885172,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2353800408,
+            ),
+            name: "VanillaRoadPartsPack",
+        },
+        Mod {
+            hash: ModHash(
+                1756350145,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1559212036,
+            ),
+            name: "Community Framework",
+        },
+        Mod {
+            hash: ModHash(
+                4052536145,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                3033180005,
+            ),
+            name: "KarmaKrew Chernarus Balance",
+        },
+        Mod {
+            hash: ModHash(
+                2639515703,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2143128974,
+            ),
+            name: "Advanced Weapon Scopes",
+        },
+    ],
+    signatures: [
+        "bastard.info",
+        "Building-Fortifications",
+        "cftoolsRoot",
+        "CodeLockv3",
+        "CooltrainV3",
+        "cynep",
+        "dab",
+        "dayz",
+        "Expansion",
+        "GormirnV2Roads",
+        "Hunterz",
+        "InclementDab",
+        "Inkota",
+        "Jacob_Mango_V3",
+        "JESSR",
+        "KarmaKrewDevTeam",
+        "L4DS",
+        "LBmasterPub_v3",
+        "NotABananaV3",
+        "SirKydric",
+        "TRG",
+        "Uncuepa",
+        "VPP",
+        "Wardog.v3",
+        "WindstrideV2",
+    ],
+    description: " https://www.discord.gg/KarmaKrew",
+    rules: [
+        Rule {
+            name: "allowedBuild",
+            value: "0",
+        },
+        Rule {
+            name: "clientPort",
+            value: "0",
+        },
+        Rule {
+            name: "dedicated",
+            value: "1",
+        },
+        Rule {
+            name: "island",
+            value: "chernarusplus",
+        },
+        Rule {
+            name: "language",
+            value: "65545",
+        },
+        Rule {
+            name: "platform",
+            value: "win",
+        },
+        Rule {
+            name: "requiredBuild",
+            value: "0",
+        },
+        Rule {
+            name: "requiredVersion",
+            value: "128",
+        },
+        Rule {
+            name: "timeLeft",
+            value: "15",
+        },
+    ],
+}

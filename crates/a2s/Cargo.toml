@@ -40,5 +40,6 @@ optional = true
 [features]
 default = []
 serialization = ["serde"]
+arma3 = []
 async = ["tokio"]
 __private = []

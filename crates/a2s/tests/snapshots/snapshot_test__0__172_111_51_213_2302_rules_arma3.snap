@@ -1,0 +1,128 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+expression: arma3
+---
+Arma3Rules {
+    version: 2,
+    mods: [
+        Mod {
+            hash: ModHash(
+                1833561340,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1797720064,
+            ),
+            name: "WindstrideClothing",
+        },
+        Mod {
+            hash: ModHash(
+                2639515703,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2143128974,
+            ),
+            name: "Advanced Weapon Scopes",
+        },
+        Mod {
+            hash: ModHash(
+                3085166437,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2289461232,
+            ),
+            name: "Namalsk Survival",
+        },
+        Mod {
+            hash: ModHash(
+                2709062885,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2289456201,
+            ),
+            name: "Namalsk Island",
+        },
+        Mod {
+            hash: ModHash(
+                434366314,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                2110459075,
+            ),
+            name: "DayOne",
+        },
+        Mod {
+            hash: ModHash(
+                3021599184,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1564026768,
+            ),
+            name: "Community Online Tools",
+        },
+        Mod {
+            hash: ModHash(
+                1756350145,
+            ),
+            is_dlc: false,
+            steam_id: WorkshopId(
+                1559212036,
+            ),
+            name: "Community Framework",
+        },
+    ],
+    signatures: [
+        "cftoolsRoot",
+        "dayz",
+        "Inkota",
+        "Jacob_Mango_V3",
+        "liquidrock",
+        "Mandibull",
+        "sumrak",
+        "WindstrideV2",
+    ],
+    description: "BNamalsk using Sumrak\'s Hardcore mission. https://discord.gg/dayone",
+    rules: [
+        Rule {
+            name: "allowedBuild",
+            value: "0",
+        },
+        Rule {
+            name: "clientPort",
+            value: "0",
+        },
+        Rule {
+            name: "dedicated",
+            value: "1",
+        },
+        Rule {
+            name: "island",
+            value: "namalsk",
+        },
+        Rule {
+            name: "language",
+            value: "65545",
+        },
+        Rule {
+            name: "platform",
+            value: "win",
+        },
+        Rule {
+            name: "requiredBuild",
+            value: "0",
+        },
+        Rule {
+            name: "requiredVersion",
+            value: "128",
+        },
+        Rule {
+            name: "timeLeft",
+            value: "15",
+        },
+    ],
+}

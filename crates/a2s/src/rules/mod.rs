@@ -1,3 +1,6 @@
+#[cfg(feature = "arma3")]
+pub mod arma3;
+
 use std::io::Cursor;
 use std::io::Read;
 use std::io::Write;

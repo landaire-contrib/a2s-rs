@@ -1,0 +1,37 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+expression: info
+---
+Info {
+    protocol: 17,
+    name: "DayOne Namalsk Hardcore Survival #1 (1/2) - 1PP",
+    map: "namalsk",
+    folder: "dayz",
+    game: "Namalsk using Sumrak\'s Hardcore mission. https://discord.gg/day",
+    app_id: 0,
+    players: 38,
+    max_players: 40,
+    bots: 0,
+    server_type: Dedicated,
+    server_os: Windows,
+    visibility: false,
+    vac: true,
+    the_ship: None,
+    version: "1.28.161464",
+    edf: 177,
+    extended_server_info: ExtendedServerInfo {
+        port: Some(
+            2302,
+        ),
+        steam_id: Some(
+            90282752859793416,
+        ),
+        keywords: Some(
+            "battleye,no3rd,external,privHive,shard111,lqs0,etm2.500000,entm9.000000,mod,11:13",
+        ),
+        game_id: Some(
+            221100,
+        ),
+    },
+    source_tv: None,
+}

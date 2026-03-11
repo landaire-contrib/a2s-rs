@@ -1,0 +1,62 @@
+---
+source: crates/a2s/tests/snapshot_test.rs
+expression: rules
+---
+[
+    Rule {
+        name: "\x01\x05",
+        value: "\x02\x01\x02\x01\x02\x01\x02\x0e\xc5 \\\xd4\x04\xa0\x8aY\xaa\x16Zenarchist\'s Notes Mod\xfc\xecIm\x04\x01\x02\x08\'k\x12WindstrideClothing7\xd0S\x9d\x04\x8e\x8d\xbd\x7f\x16Advanced Weapon Scopes\xed4\xa9\x84\x04\xd0\xfa\xa8\x7f\x16ArmA 2 ACR Weapo",
+    },
+    Rule {
+        name: "\x02\x05",
+        value: "n PackЈz\xbe\x04\x83c\xfc\xd8\rAsmondWeapons\x8e<\xbdK\x04\x11\xc6}\x80\x0eMortys Weapons\x8f<\xb5\xf4\x04\xdel\x87\xa6\x19DayZ-Expansion-Animations$\xa2\xac\xc7\x04\xddޙ\x88\x17DayZ-Expansion-Vehicles\x1bg\xf6%\x04\\",
+    },
+    Rule {
+        name: "\x03\x05",
+        value: "ޙ\x88\x13DayZ-Expansion-Core\x89\xaa:t\x04\x8a\x01\x03!~\x17DayZ-Expansion-Licensedj\xe7\xe3\x19\x04\xc3\x0c\xcb}\x06DayOne\xe1QV\xe5\x04 \x9e\xb6\x97\x0eDabs Framework\xd0\xf1\x19\xb4\x04\x90\'9]\x16Community Online Too",
+    },
+    Rule {
+        name: "\x04\x05",
+        value: "ls\xc1Ưh\x04\x04\xb0\xef\\\x13Community Framework\x0c\x06Asmond\x0bcftoolsRoot\x03dab\x04dayz\tExpansion\x06Inkota\x0eJacob_Mango_V3\nliquidrock\tMandibull\x03TTC\x0cWindstrid",
+    },
+    Rule {
+        name: "\x05\x05",
+        value: "eV2\nZenarchistOVanilla-ish with no base building. Have an adventure! https://discord.gg/dayone",
+    },
+    Rule {
+        name: "allowedBuild",
+        value: "0",
+    },
+    Rule {
+        name: "clientPort",
+        value: "0",
+    },
+    Rule {
+        name: "dedicated",
+        value: "1",
+    },
+    Rule {
+        name: "island",
+        value: "enoch",
+    },
+    Rule {
+        name: "language",
+        value: "65545",
+    },
+    Rule {
+        name: "platform",
+        value: "win",
+    },
+    Rule {
+        name: "requiredBuild",
+        value: "0",
+    },
+    Rule {
+        name: "requiredVersion",
+        value: "128",
+    },
+    Rule {
+        name: "timeLeft",
+        value: "15",
+    },
+]

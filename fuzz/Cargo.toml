@@ -13,7 +13,7 @@ libfuzzer-sys = "0.4"
 
 [dependencies.a2s]
 path = "../crates/a2s"
-features = ["arbitrary"]
+features = ["arbitrary", "arma3"]
 
 [[bin]]
 name = "fuzz_info_structured"
@@ -53,6 +53,20 @@ bench = false
 [[bin]]
 name = "fuzz_rules"
 path = "fuzz_targets/fuzz_rules.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_arma3_rules"
+path = "fuzz_targets/fuzz_arma3_rules.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_arma3_rules_structured"
+path = "fuzz_targets/fuzz_arma3_rules_structured.rs"
 test = false
 doc = false
 bench = false
