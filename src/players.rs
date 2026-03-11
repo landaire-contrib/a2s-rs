@@ -1,4 +1,4 @@
-use std::io::Cursor;
+use std::io::{Cursor, Read};
 #[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
 
@@ -44,7 +44,12 @@ pub struct TheShipPlayer {
 }
 
 impl Player {
-    pub fn from_cursor(mut data: Cursor<Vec<u8>>, app_id: u16) -> Result<Vec<Self>> {
+    #[deprecated(since = "0.6.2", note = "use from_reader")]
+    pub fn from_cursor(data: Cursor<Vec<u8>>, app_id: u16) -> Result<Vec<Self>> {
+        Self::from_reader(data, app_id)
+    }
+
+    pub fn from_reader<R: Read>(mut data: R, app_id: u16) -> Result<Vec<Self>> {
         if data.read_u8()? != 0x44 {
             return Err(Error::InvalidResponse);
         }
@@ -80,12 +85,12 @@ impl A2SClient {
     #[cfg(feature = "async")]
     pub async fn players<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Player>> {
         let data = self.do_challenge_request(addr, &PLAYER_REQUEST).await?;
-        Player::from_cursor(Cursor::new(data), self.app_id)
+        Player::from_reader(data.as_slice(), self.app_id)
     }
 
     #[cfg(not(feature = "async"))]
     pub fn players<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Player>> {
         let data = self.do_challenge_request(addr, &PLAYER_REQUEST)?;
-        Player::from_cursor(Cursor::new(data), self.app_id)
+        Player::from_reader(data.as_slice(), self.app_id)
     }
 }

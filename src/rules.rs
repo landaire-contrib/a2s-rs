@@ -1,4 +1,4 @@
-use std::io::Cursor;
+use std::io::{Cursor, Read};
 #[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
 
@@ -51,7 +51,12 @@ impl Rule {
         bytes
     }
 
-    pub fn from_cursor(mut data: Cursor<Vec<u8>>) -> Result<Vec<Self>> {
+    #[deprecated(since = "0.6.2", note = "use from_reader")]
+    pub fn from_cursor(data: Cursor<Vec<u8>>) -> Result<Vec<Self>> {
+        Self::from_reader(data)
+    }
+
+    pub fn from_reader<R: Read>(mut data: R) -> Result<Vec<Self>> {
         if data.read_u8()? != 0x45 {
             return Err(Error::InvalidResponse);
         }
@@ -75,12 +80,12 @@ impl A2SClient {
     #[cfg(feature = "async")]
     pub async fn rules<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Rule>> {
         let data = self.do_challenge_request(addr, &RULES_REQUEST).await?;
-        Rule::from_cursor(Cursor::new(data))
+        Rule::from_reader(data.as_slice())
     }
 
     #[cfg(not(feature = "async"))]
     pub fn rules<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Rule>> {
         let data = self.do_challenge_request(addr, &RULES_REQUEST)?;
-        Rule::from_cursor(Cursor::new(data))
+        Rule::from_reader(data.as_slice())
     }
 }

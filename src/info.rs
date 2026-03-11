@@ -1,5 +1,5 @@
 use std::convert::TryFrom;
-use std::io::{Cursor, ErrorKind, Write};
+use std::io::{Cursor, ErrorKind, Read, Write};
 #[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
 
@@ -249,7 +249,12 @@ impl Info {
         bytes
     }
 
-    pub fn from_cursor(mut data: Cursor<Vec<u8>>) -> Result<Self> {
+    #[deprecated(since = "0.6.2", note = "use from_reader")]
+    pub fn from_cursor(data: Cursor<Vec<u8>>) -> Result<Self> {
+        Self::from_reader(data)
+    }
+
+    pub fn from_reader<R: Read>(mut data: R) -> Result<Self> {
         if data.read_u8()? != 0x49u8 {
             return Err(Error::InvalidResponse);
         }
@@ -357,9 +362,9 @@ impl A2SClient {
             query.write_i32::<LittleEndian>(challenge)?;
 
             let data = self.send(&query, addr).await?;
-            Info::from_cursor(Cursor::new(data))
+            Info::from_reader(data.as_slice())
         } else {
-            Info::from_cursor(Cursor::new(response))
+            Info::from_reader(response.as_slice())
         }
     }
 
@@ -378,9 +383,9 @@ impl A2SClient {
             query.write_i32::<LittleEndian>(challenge)?;
 
             let data = self.send(&query, addr)?;
-            Info::from_cursor(Cursor::new(data))
+            Info::from_reader(data.as_slice())
         } else {
-            Info::from_cursor(Cursor::new(response))
+            Info::from_reader(response.as_slice())
         }
     }
 }

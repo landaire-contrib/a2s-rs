@@ -133,7 +133,7 @@ impl A2SClient {
     #[cfg(feature = "async")]
     pub async fn new() -> Result<A2SClient> {
         Ok(A2SClient {
-            socket : UdpSocket::bind("0.0.0.0:0").await?,
+            socket: UdpSocket::bind("0.0.0.0:0").await?,
             timeout: Duration::new(5, 0),
             max_size: 1400,
             app_id: 0,
@@ -151,16 +151,20 @@ impl A2SClient {
     }
 
     #[cfg(not(feature = "async"))]
-    pub fn set_timeout(&mut self, timeout : Duration) -> Result<&mut Self> {
-        if timeout == Duration::ZERO {return Err(Error::Other("attempted to set timeout to 0"));}
+    pub fn set_timeout(&mut self, timeout: Duration) -> Result<&mut Self> {
+        if timeout == Duration::ZERO {
+            return Err(Error::Other("attempted to set timeout to 0"));
+        }
         self.socket.set_read_timeout(Some(timeout))?;
         self.socket.set_write_timeout(Some(timeout))?;
         Ok(self)
     }
 
     #[cfg(feature = "async")]
-    pub fn set_timeout(&mut self, timeout : Duration) -> Result<&mut Self> {
-        if timeout == Duration::ZERO {return Err(Error::Other("attempted to set timeout to 0"));}
+    pub fn set_timeout(&mut self, timeout: Duration) -> Result<&mut Self> {
+        if timeout == Duration::ZERO {
+            return Err(Error::Other("attempted to set timeout to 0"));
+        }
         self.timeout = timeout;
         Ok(self)
     }
@@ -445,23 +449,20 @@ impl A2SClient {
     }
 }
 
-trait ReadCString {
-    fn read_cstring(&mut self) -> Result<String>;
-}
-
-impl ReadCString for Cursor<Vec<u8>> {
+pub(crate) trait ReadCString: Read {
     fn read_cstring(&mut self) -> Result<String> {
-        let end = self.get_ref().len() as u64;
-        let mut buf = [0; 1];
         let mut str_vec = Vec::with_capacity(256);
-        while self.position() < end {
-            self.read_exact(&mut buf)?;
-            if buf[0] == 0 {
+        while let Ok(byte) = self.read_u8() {
+            if byte == 0 {
                 break;
-            } else {
-                str_vec.push(buf[0]);
             }
+
+            str_vec.push(byte);
         }
+
         Ok(String::from_utf8_lossy(&str_vec[..]).into_owned())
     }
 }
+
+/// Implement ReadCString for all types that implement Read
+impl<R: Read + ?Sized> ReadCString for R {}
