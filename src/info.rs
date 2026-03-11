@@ -1,5 +1,8 @@
 use std::convert::TryFrom;
-use std::io::{Cursor, ErrorKind, Read, Write};
+use std::io::Cursor;
+use std::io::ErrorKind;
+use std::io::Read;
+use std::io::Write;
 #[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
 
@@ -7,12 +10,18 @@ use std::net::ToSocketAddrs;
 use tokio::net::ToSocketAddrs;
 
 #[cfg(feature = "serde")]
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+#[cfg(feature = "serde")]
+use serde::Serialize;
 
-use byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
+use byteorder::LittleEndian;
+use byteorder::ReadBytesExt;
+use byteorder::WriteBytesExt;
 
-use crate::errors::{Error, Result};
-use crate::{A2SClient, ReadCString};
+use crate::A2SClient;
+use crate::ReadCString;
+use crate::errors::Error;
+use crate::errors::Result;
 
 const INFO_REQUEST: [u8; 25] = [
     0xFF, 0xFF, 0xFF, 0xFF, 0x54, 0x53, 0x6F, 0x75, 0x72, 0x63, 0x65, 0x20, 0x45, 0x6E, 0x67, 0x69,

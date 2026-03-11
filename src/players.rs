@@ -1,17 +1,23 @@
-use std::io::{Cursor, Read};
+use std::io::Cursor;
+use std::io::Read;
 #[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
 
 #[cfg(feature = "async")]
 use tokio::net::ToSocketAddrs;
 
-use byteorder::{LittleEndian, ReadBytesExt};
+use byteorder::LittleEndian;
+use byteorder::ReadBytesExt;
 
 #[cfg(feature = "serde")]
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+#[cfg(feature = "serde")]
+use serde::Serialize;
 
-use crate::errors::{Error, Result};
-use crate::{A2SClient, ReadCString};
+use crate::A2SClient;
+use crate::ReadCString;
+use crate::errors::Error;
+use crate::errors::Result;
 
 const PLAYER_REQUEST: [u8; 5] = [0xff, 0xff, 0xff, 0xff, 0x55];
 

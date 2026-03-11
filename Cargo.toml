@@ -5,7 +5,7 @@ version = "0.6.1"
 license = "MIT"
 repository = "https://github.com/rumblefrog/a2s-rs"
 authors = ["rumblefrog <contact@rumblefrog.me>"]
-edition = "2018"
+edition = "2024"
 keywords = ["steam", "query"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -37,6 +37,3 @@ optional = true
 default = []
 serialization = ["serde"]
 async = ["tokio"]
-
-
-

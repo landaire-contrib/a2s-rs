@@ -3,22 +3,31 @@ pub mod info;
 pub mod players;
 pub mod rules;
 
-use std::io::{Cursor, Read, Write};
+use std::io::Cursor;
+use std::io::Read;
+use std::io::Write;
 #[cfg(not(feature = "async"))]
-use std::net::{ToSocketAddrs, UdpSocket};
+use std::net::ToSocketAddrs;
+#[cfg(not(feature = "async"))]
+use std::net::UdpSocket;
 use std::ops::Deref;
 use std::time::Duration;
 
 #[cfg(feature = "async")]
-use tokio::net::{ToSocketAddrs, UdpSocket};
+use tokio::net::ToSocketAddrs;
+#[cfg(feature = "async")]
+use tokio::net::UdpSocket;
 #[cfg(feature = "async")]
 use tokio::time;
 
-use byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
+use byteorder::LittleEndian;
+use byteorder::ReadBytesExt;
+use byteorder::WriteBytesExt;
 use bzip2::read::BzDecoder;
 use crc::crc32;
 
-use crate::errors::{Error, Result};
+use crate::errors::Error;
+use crate::errors::Result;
 
 const SINGLE_PACKET: i32 = -1;
 const MULTI_PACKET: i32 = -2;
@@ -300,7 +309,7 @@ impl A2SClient {
         let mut data = Cursor::new(data);
 
         let header = data.read_u8()?;
-        if header != 'A' as u8 {
+        if header != b'A' {
             return Err(Error::InvalidResponse);
         }
 
