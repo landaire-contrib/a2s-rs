@@ -17,6 +17,7 @@ use serde::Deserialize;
 use serde::Serialize;
 
 use crate::A2SClient;
+use crate::HEADER_RULES;
 use crate::ReadCString;
 use crate::errors::Error;
 use crate::errors::Result;
@@ -64,7 +65,7 @@ impl Rule {
     }
 
     pub fn write_vec<W: Write>(rules: &[Self], mut w: W) -> Result<()> {
-        w.write_all(&[0xff, 0xff, 0xff, 0xff, 0x45])?;
+        w.write_all(&[0xff, 0xff, 0xff, 0xff, HEADER_RULES])?;
         w.write_all(&(rules.len() as u16).to_le_bytes())?;
         for rule in rules {
             rule.write(&mut w)?;
@@ -85,9 +86,9 @@ impl Rule {
 
     pub fn from_reader<R: Read>(mut data: R) -> Result<Vec<Self>> {
         let header = data.read_u8()?;
-        if header != 0x45 {
+        if header != HEADER_RULES {
             return Err(Error::UnexpectedHeader {
-                expected: 0x45,
+                expected: HEADER_RULES,
                 actual: header,
             });
         }

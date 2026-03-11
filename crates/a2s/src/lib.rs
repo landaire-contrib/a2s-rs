@@ -26,6 +26,12 @@ use crate::errors::Result;
 pub(crate) const SINGLE_PACKET: i32 = -1;
 pub(crate) const MULTI_PACKET: i32 = -2;
 
+/// Response header bytes.
+pub const HEADER_CHALLENGE: u8 = b'A';
+pub const HEADER_INFO: u8 = b'I';
+pub const HEADER_PLAYER: u8 = b'D';
+pub const HEADER_RULES: u8 = b'E';
+
 // Offsets
 pub(crate) const OFS_HEADER: usize = 0;
 pub(crate) const OFS_SP_PAYLOAD: usize = 4;
@@ -295,12 +301,12 @@ impl A2SClient {
 
         let data = self.send(packet.get_ref(), &addr)?;
 
-        if data.first() != Some(&b'A') {
+        if data.first() != Some(&HEADER_CHALLENGE) {
             return Ok(data);
         }
 
         let mut cursor = Cursor::new(&data);
-        cursor.read_u8()?; // skip 'A'
+        cursor.read_u8()?; // skip challenge header
         let challenge = cursor.read_i32::<LittleEndian>()?;
 
         packet.set_position(5);

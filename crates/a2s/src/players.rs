@@ -13,6 +13,7 @@ use serde::Serialize;
 
 use crate::A2SClient;
 use crate::DeOptions;
+use crate::HEADER_PLAYER;
 use crate::ReadCString;
 use crate::errors::Error;
 use crate::errors::Result;
@@ -61,9 +62,9 @@ impl Player {
 
     pub fn from_reader<R: Read>(mut data: R, options: &DeOptions) -> Result<Vec<Self>> {
         let header = data.read_u8()?;
-        if header != 0x44 {
+        if header != HEADER_PLAYER {
             return Err(Error::UnexpectedHeader {
-                expected: 0x44,
+                expected: HEADER_PLAYER,
                 actual: header,
             });
         }

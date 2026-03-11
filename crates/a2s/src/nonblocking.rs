@@ -12,6 +12,7 @@ use tokio::net::ToSocketAddrs;
 use tokio::net::UdpSocket;
 
 use crate::DeOptions;
+use crate::HEADER_CHALLENGE;
 use crate::PacketFragment;
 use crate::errors::Error;
 use crate::errors::Result;
@@ -182,12 +183,12 @@ impl A2SClient {
 
         let data = self.send(packet.get_ref(), &addr).await?;
 
-        if data.first() != Some(&b'A') {
+        if data.first() != Some(&HEADER_CHALLENGE) {
             return Ok(data);
         }
 
         let mut cursor = Cursor::new(&data);
-        cursor.read_u8()?; // skip 'A'
+        cursor.read_u8()?; // skip challenge header
         let challenge = cursor.read_i32::<LittleEndian>()?;
 
         packet.set_position(5);
@@ -203,7 +204,7 @@ impl A2SClient {
         let mut packet = Cursor::new(&response);
 
         let header = packet.read_u8()?;
-        if header == b'A' {
+        if header == HEADER_CHALLENGE {
             let challenge = packet.read_i32::<LittleEndian>()?;
 
             let mut query = Vec::with_capacity(29);

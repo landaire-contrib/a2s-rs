@@ -17,6 +17,8 @@ use byteorder::ReadBytesExt;
 use byteorder::WriteBytesExt;
 
 use crate::A2SClient;
+use crate::HEADER_CHALLENGE;
+use crate::HEADER_INFO;
 use crate::ReadCString;
 use crate::errors::Error;
 use crate::errors::Result;
@@ -279,7 +281,7 @@ impl Info {
     }
 
     pub fn write<W: Write>(&self, mut w: W) -> Result<()> {
-        w.write_all(&[0xff, 0xff, 0xff, 0xff, 0x49])?;
+        w.write_all(&[0xff, 0xff, 0xff, 0xff, HEADER_INFO])?;
         w.write_all(&[self.protocol])?;
         w.write_all(self.name.as_bytes())?;
         w.write_all(&[0])?;
@@ -343,9 +345,9 @@ impl Info {
 
     pub fn from_reader<R: Read>(mut data: R) -> Result<Self> {
         let header = data.read_u8()?;
-        if header != 0x49u8 {
+        if header != HEADER_INFO {
             return Err(Error::UnexpectedHeader {
-                expected: 0x49,
+                expected: HEADER_INFO,
                 actual: header,
             });
         }
@@ -448,7 +450,7 @@ impl A2SClient {
         let mut packet = Cursor::new(&response);
 
         let header = packet.read_u8()?;
-        if header == b'A' {
+        if header == HEADER_CHALLENGE {
             let challenge = packet.read_i32::<LittleEndian>()?;
 
             let mut query = Vec::with_capacity(29);

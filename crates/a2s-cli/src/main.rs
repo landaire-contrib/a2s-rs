@@ -5,6 +5,7 @@ use std::path::Path;
 use std::time::Duration;
 
 use a2s::A2SClient;
+use a2s::HEADER_CHALLENGE;
 use a2s::info::INFO_REQUEST;
 use a2s::info::Info;
 use a2s::players::PLAYER_REQUEST;
@@ -35,7 +36,7 @@ fn resolve_query_addr(game_addr: &str, query_port_offset: i32) -> String {
 fn capture_info(client: &A2SClient, addr: &str) -> Option<Vec<u8>> {
     match client.send(&INFO_REQUEST, addr) {
         Ok(data) => {
-            if !data.is_empty() && data[0] == b'A' && data.len() >= 5 {
+            if !data.is_empty() && data[0] == HEADER_CHALLENGE && data.len() >= 5 {
                 let challenge = i32::from_le_bytes([data[1], data[2], data[3], data[4]]);
                 let mut query = Vec::with_capacity(29);
                 query.extend_from_slice(&INFO_REQUEST);
