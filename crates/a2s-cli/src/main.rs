@@ -2,6 +2,7 @@ use std::env;
 use std::fs;
 use std::io::Write;
 use std::path::Path;
+use std::time::Duration;
 
 use a2s::A2SClient;
 use a2s::info::INFO_REQUEST;
@@ -21,11 +22,11 @@ fn resolve_query_addr(game_addr: &str, query_port_offset: i32) -> String {
     }
 
     // Parse the address to extract host and port
-    if let Some((host, port_str)) = game_addr.rsplit_once(':') {
-        if let Ok(game_port) = port_str.parse::<u16>() {
-            let query_port = (game_port as i32 + query_port_offset) as u16;
-            return format!("{host}:{query_port}");
-        }
+    if let Some((host, port_str)) = game_addr.rsplit_once(':')
+        && let Ok(game_port) = port_str.parse::<u16>()
+    {
+        let query_port = (game_port as i32 + query_port_offset) as u16;
+        return format!("{host}:{query_port}");
     }
 
     game_addr.to_string()
@@ -105,12 +106,10 @@ fn main() {
     while let Some(arg) = iter.next() {
         match arg.as_str() {
             "--query-port-offset" => {
-                let val = iter
-                    .next()
-                    .unwrap_or_else(|| {
-                        eprintln!("--query-port-offset requires a value");
-                        std::process::exit(1);
-                    });
+                let val = iter.next().unwrap_or_else(|| {
+                    eprintln!("--query-port-offset requires a value");
+                    std::process::exit(1);
+                });
                 query_port_offset = val.parse().unwrap_or_else(|e| {
                     eprintln!("invalid --query-port-offset value: {e}");
                     std::process::exit(1);
@@ -135,7 +134,7 @@ fn main() {
     let output_dir = Path::new(positional[0]);
     fs::create_dir_all(output_dir).expect("failed to create output directory");
 
-    let client = A2SClient::new().expect("failed to create A2S client");
+    let client = A2SClient::new(Duration::new(5, 0)).expect("failed to create A2S client");
 
     for game_addr in &positional[1..] {
         let query_addr = resolve_query_addr(game_addr, query_port_offset);

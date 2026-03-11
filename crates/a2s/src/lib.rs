@@ -121,9 +121,8 @@ pub struct A2SClient {
 }
 
 impl A2SClient {
-    pub fn new() -> Result<A2SClient> {
+    pub fn new(timeout: Duration) -> Result<A2SClient> {
         let socket = UdpSocket::bind("0.0.0.0:0")?;
-        let timeout = Duration::new(5, 0);
 
         socket.set_read_timeout(Some(timeout))?;
         socket.set_write_timeout(Some(timeout))?;
@@ -152,9 +151,6 @@ impl A2SClient {
     }
 
     pub fn set_timeout(&mut self, timeout: Duration) -> Result<&mut Self> {
-        if timeout == Duration::ZERO {
-            return Err(Error::Other("attempted to set timeout to 0"));
-        }
         self.socket.set_read_timeout(Some(timeout))?;
         self.socket.set_write_timeout(Some(timeout))?;
         Ok(self)

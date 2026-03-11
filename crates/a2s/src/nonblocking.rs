@@ -2,7 +2,6 @@ use std::io::Cursor;
 use std::io::Read;
 use std::io::Write;
 use std::ops::Deref;
-use std::time::Duration;
 
 use byteorder::LittleEndian;
 use byteorder::ReadBytesExt;
@@ -11,7 +10,6 @@ use bzip2::read::BzDecoder;
 use crc::crc32;
 use tokio::net::ToSocketAddrs;
 use tokio::net::UdpSocket;
-use tokio::time;
 
 use crate::DeOptions;
 use crate::PacketFragment;
@@ -25,18 +23,8 @@ use crate::read_buffer_offset;
 use crate::rules::RULES_REQUEST;
 use crate::rules::Rule;
 
-macro_rules! future_timeout {
-    ($timeout:expr, $future:expr) => {
-        match time::timeout($timeout, $future).await {
-            Ok(value) => value,
-            Err(_) => return Err(Error::ErrTimeout),
-        }
-    };
-}
-
 pub struct A2SClient {
     socket: UdpSocket,
-    timeout: Duration,
     max_size: usize,
     de_options: DeOptions,
 }
@@ -45,7 +33,6 @@ impl A2SClient {
     pub async fn new() -> Result<A2SClient> {
         Ok(A2SClient {
             socket: UdpSocket::bind("0.0.0.0:0").await?,
-            timeout: Duration::new(5, 0),
             max_size: 1400,
             de_options: DeOptions::default(),
         })
@@ -67,21 +54,13 @@ impl A2SClient {
         self
     }
 
-    pub fn set_timeout(&mut self, timeout: Duration) -> Result<&mut Self> {
-        if timeout == Duration::ZERO {
-            return Err(Error::Other("attempted to set timeout to 0"));
-        }
-        self.timeout = timeout;
-        Ok(self)
-    }
-
     #[doc(hidden)]
     pub async fn send<A: ToSocketAddrs>(&self, payload: &[u8], addr: A) -> Result<Vec<u8>> {
-        future_timeout!(self.timeout, self.socket.send_to(payload, addr))?;
+        self.socket.send_to(payload, addr).await?;
 
         let mut data = vec![0; self.max_size];
 
-        let read = future_timeout!(self.timeout, self.socket.recv(&mut data))?;
+        let read = self.socket.recv(&mut data).await?;
         data.truncate(read);
 
         if data.len() < 4 {
@@ -114,7 +93,7 @@ impl A2SClient {
                 data.try_reserve(switching_size)?;
                 data.resize(switching_size, 0);
 
-                let read = future_timeout!(self.timeout, self.socket.recv(&mut data))?;
+                let read = self.socket.recv(&mut data).await?;
                 data.truncate(read);
 
                 if data.len() <= 9 {
@@ -154,8 +133,7 @@ impl A2SClient {
             }
 
             if id as u32 & 0x80000000 != 0 {
-                let decompressed_size =
-                    read_buffer_offset!(&data, crate::OFS_MP_SS_BZ2_SIZE, u32);
+                let decompressed_size = read_buffer_offset!(&data, crate::OFS_MP_SS_BZ2_SIZE, u32);
                 let checksum = read_buffer_offset!(&data, crate::OFS_MP_SS_BZ2_CRC, u32);
 
                 if decompressed_size > (1024 * 1024) {

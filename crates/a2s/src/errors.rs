@@ -10,9 +10,6 @@ pub enum Error {
     #[error("Failed to reserve memory {0}")]
     TryReserveError(#[from] std::collections::TryReserveError),
 
-    #[error("Socket timed out")]
-    ErrTimeout,
-
     #[error("Invalid response")]
     InvalidResponse,
 
