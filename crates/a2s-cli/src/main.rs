@@ -70,7 +70,7 @@ fn capture(client: &A2SClient, game_addr: &str, query_addr: &str, output_dir: &P
         .and_then(|data| Info::from_reader(data).ok().map(|info| info.app_id));
 
     let dir = match app_id {
-        Some(id) => output_dir.join(id.to_string()),
+        Some(id) => output_dir.join(id.0.to_string()),
         None => output_dir.join("unknown"),
     };
     fs::create_dir_all(&dir).expect("failed to create app_id directory");

@@ -1,6 +1,5 @@
 ---
 source: crates/a2s/tests/e2e_test.rs
-assertion_line: 88
 expression: info
 ---
 Info {
@@ -9,7 +8,9 @@ Info {
     map: "deerisle",
     folder: "dayz",
     game: "All settings as per the Deer Isle map creator with extra clothi",
-    app_id: 0,
+    app_id: AppId(
+        0,
+    ),
     players: 4,
     max_players: 70,
     bots: 0,
@@ -25,13 +26,17 @@ Info {
             2302,
         ),
         steam_id: Some(
-            90282752895443995,
+            SteamId(
+                90282752895443995,
+            ),
         ),
         keywords: Some(
             "battleye,no3rd,external,privHive,shard123ABC,lqs0,etm6.000000,entm4.000000,mod,16:15",
         ),
         game_id: Some(
-            221100,
+            GameId(
+                221100,
+            ),
         ),
     },
     source_tv: None,

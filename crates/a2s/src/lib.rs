@@ -102,6 +102,35 @@ macro_rules! read_buffer_offset {
 #[cfg(feature = "async")]
 pub(crate) use read_buffer_offset;
 
+#[cfg(feature = "serde")]
+use serde::Deserialize;
+#[cfg(feature = "serde")]
+use serde::Serialize;
+
+/// A Steam Application ID.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub struct AppId(pub u16);
+
+impl AppId {
+    /// The Ship (2400)
+    pub const THE_SHIP: Self = Self(2400);
+}
+
+/// A 64-bit Steam ID identifying a user or server.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub struct SteamId(pub u64);
+
+/// A 64-bit Game ID. The low 24 bits contain a more accurate App ID
+/// than the 16-bit [`AppId`] field.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub struct GameId(pub u64);
+
 #[cfg(feature = "arbitrary")]
 pub(crate) fn arbitrary_bstring(u: &mut arbitrary::Unstructured<'_>) -> arbitrary::Result<BString> {
     let bytes: Vec<u8> = arbitrary::Arbitrary::arbitrary(u)?;
@@ -126,9 +155,9 @@ pub struct DeOptions {
 }
 
 impl DeOptions {
-    pub fn from_app_id(app_id: u16) -> Self {
+    pub fn from_app_id(app_id: AppId) -> Self {
         Self {
-            the_ship: app_id == 2400,
+            the_ship: app_id == AppId::THE_SHIP,
         }
     }
 }
@@ -165,7 +194,7 @@ impl A2SClient {
     }
 
     #[deprecated(since = "0.6.2", note = "use de_options")]
-    pub fn app_id(&mut self, app_id: u16) -> &mut Self {
+    pub fn app_id(&mut self, app_id: AppId) -> &mut Self {
         self.de_options = DeOptions::from_app_id(app_id);
         self
     }

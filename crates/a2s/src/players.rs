@@ -56,7 +56,7 @@ pub struct TheShipPlayer {
 
 impl Player {
     #[deprecated(since = "0.6.2", note = "use from_reader")]
-    pub fn from_cursor(data: Cursor<Vec<u8>>, app_id: u16) -> Result<Vec<Self>> {
+    pub fn from_cursor(data: Cursor<Vec<u8>>, app_id: crate::AppId) -> Result<Vec<Self>> {
         Self::from_reader(data, &DeOptions::from_app_id(app_id))
     }
 

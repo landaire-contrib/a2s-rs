@@ -45,7 +45,7 @@ impl A2SClient {
     }
 
     #[deprecated(since = "0.6.2", note = "use de_options")]
-    pub fn app_id(&mut self, app_id: u16) -> &mut Self {
+    pub fn app_id(&mut self, app_id: crate::AppId) -> &mut Self {
         self.de_options = DeOptions::from_app_id(app_id);
         self
     }

@@ -1,6 +1,5 @@
 ---
 source: crates/a2s/tests/snapshot_test.rs
-assertion_line: 25
 expression: info
 ---
 Info {
@@ -9,7 +8,9 @@ Info {
     map: "outcry!",
     folder: "valve",
     game: "Half-Life",
-    app_id: 70,
+    app_id: AppId(
+        70,
+    ),
     players: 0,
     max_players: 16,
     bots: 0,
@@ -25,13 +26,17 @@ Info {
             27015,
         ),
         steam_id: Some(
-            90276872898144271,
+            SteamId(
+                90276872898144271,
+            ),
         ),
         keywords: Some(
             "",
         ),
         game_id: Some(
-            70,
+            GameId(
+                70,
+            ),
         ),
     },
     source_tv: None,

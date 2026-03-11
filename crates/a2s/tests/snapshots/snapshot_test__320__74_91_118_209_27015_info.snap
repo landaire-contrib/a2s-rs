@@ -1,6 +1,5 @@
 ---
 source: crates/a2s/tests/snapshot_test.rs
-assertion_line: 25
 expression: info
 ---
 Info {
@@ -9,7 +8,9 @@ Info {
     map: "asc_mp_killbox2_v11",
     folder: "hl2mp",
     game: "Half-Life 2 Deathmatch",
-    app_id: 320,
+    app_id: AppId(
+        320,
+    ),
     players: 4,
     max_players: 25,
     bots: 0,
@@ -25,13 +26,17 @@ Info {
             27015,
         ),
         steam_id: Some(
-            90282749540162560,
+            SteamId(
+                90282749540162560,
+            ),
         ),
         keywords: Some(
             "alltalk,gravity",
         ),
         game_id: Some(
-            320,
+            GameId(
+                320,
+            ),
         ),
     },
     source_tv: Some(

@@ -8,7 +8,9 @@ Info {
     map: "chernarusplus",
     folder: "dayz",
     game: "Vanilla-ish with no base building. Have an adventure! https://d",
-    app_id: 0,
+    app_id: AppId(
+        0,
+    ),
     players: 31,
     max_players: 80,
     bots: 0,
@@ -24,13 +26,17 @@ Info {
             2402,
         ),
         steam_id: Some(
-            90282752995759117,
+            SteamId(
+                90282752995759117,
+            ),
         ),
         keywords: Some(
             "battleye,no3rd,external,privHive,shard111,lqs0,etm3.000000,entm4.000000,mod,08:01",
         ),
         game_id: Some(
-            221100,
+            GameId(
+                221100,
+            ),
         ),
     },
     source_tv: None,

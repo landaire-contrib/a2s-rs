@@ -17,9 +17,12 @@ use byteorder::ReadBytesExt;
 use byteorder::WriteBytesExt;
 
 use crate::A2SClient;
+use crate::AppId;
+use crate::GameId;
 use crate::HEADER_CHALLENGE;
 use crate::HEADER_INFO;
 use crate::ReadCString;
+use crate::SteamId;
 use crate::errors::Error;
 use crate::errors::Result;
 
@@ -84,7 +87,7 @@ pub struct ExtendedServerInfo {
 
     /// Server's SteamID.
     /// Available if edf & 0x10 is true
-    pub steam_id: Option<u64>,
+    pub steam_id: Option<SteamId>,
 
     /// Tags that describe the game according to the server (for future use.)
     /// Available if edf & 0x20 is true
@@ -93,8 +96,8 @@ pub struct ExtendedServerInfo {
 
     /// The server's 64-bit GameID. If this is present, a more accurate AppID is present in the low 24 bits.
     /// The earlier AppID could have been truncated as it was forced into 16-bit storage.
-    /// Avaialble if edf & 0x01 is true
-    pub game_id: Option<u64>,
+    /// Available if edf & 0x01 is true
+    pub game_id: Option<GameId>,
 }
 
 #[derive(Debug, Clone)]
@@ -188,7 +191,7 @@ pub struct Info {
     pub game: BString,
 
     /// Steam Application ID of game.
-    pub app_id: u16,
+    pub app_id: AppId,
 
     /// Number of players on the server.
     pub players: u8,
@@ -291,7 +294,7 @@ impl Info {
         w.write_all(&[0])?;
         w.write_all(self.game.as_bytes())?;
         w.write_all(&[0])?;
-        w.write_all(&self.app_id.to_le_bytes())?;
+        w.write_all(&self.app_id.0.to_le_bytes())?;
         w.write_all(&[self.players, self.max_players, self.bots])?;
         w.write_all(&[self.server_type as u8])?;
         w.write_all(&[self.server_os as u8])?;
@@ -313,7 +316,7 @@ impl Info {
             w.write_all(&port.to_le_bytes())?;
         }
         if let Some(steam_id) = &self.extended_server_info.steam_id {
-            w.write_all(&steam_id.to_le_bytes())?;
+            w.write_all(&steam_id.0.to_le_bytes())?;
         }
         if let Some(source_tv) = &self.source_tv {
             w.write_all(&source_tv.port.to_le_bytes())?;
@@ -325,7 +328,7 @@ impl Info {
             w.write_all(&[0])?;
         }
         if let Some(game_id) = &self.extended_server_info.game_id {
-            w.write_all(&game_id.to_le_bytes())?;
+            w.write_all(&game_id.0.to_le_bytes())?;
         }
 
         Ok(())
@@ -357,7 +360,7 @@ impl Info {
         let map = data.read_cstring()?;
         let folder = data.read_cstring()?;
         let game = data.read_cstring()?;
-        let app_id = data.read_u16::<LittleEndian>()?;
+        let app_id = AppId(data.read_u16::<LittleEndian>()?);
         let players = data.read_u8()?;
         let max_players = data.read_u8()?;
         let bots = data.read_u8()?;
@@ -365,7 +368,7 @@ impl Info {
         let server_os = ServerOS::try_from(data.read_u8()?)?;
         let visibility = data.read_u8()? != 0;
         let vac = data.read_u8()? != 0;
-        let the_ship = if app_id == 2400 {
+        let the_ship = if app_id == AppId::THE_SHIP {
             Some(TheShip {
                 mode: TheShipMode::from(data.read_u8()?),
                 witnesses: data.read_u8()?,
@@ -391,7 +394,7 @@ impl Info {
             None
         };
         let steam_id = if edf & 0x10 != 0 {
-            Some(data.read_u64::<LittleEndian>()?)
+            Some(SteamId(data.read_u64::<LittleEndian>()?))
         } else {
             None
         };
@@ -409,7 +412,7 @@ impl Info {
             None
         };
         let game_id = if edf & 0x01 != 0 {
-            Some(data.read_u64::<LittleEndian>()?)
+            Some(GameId(data.read_u64::<LittleEndian>()?))
         } else {
             None
         };

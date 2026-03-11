@@ -8,7 +8,9 @@ Info {
     map: "enoch",
     folder: "dayz",
     game: "Vanilla-ish with no base building. Have an adventure! https://d",
-    app_id: 0,
+    app_id: AppId(
+        0,
+    ),
     players: 11,
     max_players: 70,
     bots: 0,
@@ -24,13 +26,17 @@ Info {
             2302,
         ),
         steam_id: Some(
-            90282752995787789,
+            SteamId(
+                90282752995787789,
+            ),
         ),
         keywords: Some(
             "battleye,no3rd,external,privHive,shard111,lqs0,etm4.000000,entm2.000000,mod,11:46",
         ),
         game_id: Some(
-            221100,
+            GameId(
+                221100,
+            ),
         ),
     },
     source_tv: None,

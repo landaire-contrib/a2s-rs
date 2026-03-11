@@ -8,7 +8,9 @@ Info {
     map: "namalsk",
     folder: "dayz",
     game: "Namalsk using Sumrak\'s Hardcore mission. https://discord.gg/day",
-    app_id: 0,
+    app_id: AppId(
+        0,
+    ),
     players: 38,
     max_players: 40,
     bots: 0,
@@ -24,13 +26,17 @@ Info {
             2302,
         ),
         steam_id: Some(
-            90282752859793416,
+            SteamId(
+                90282752859793416,
+            ),
         ),
         keywords: Some(
             "battleye,no3rd,external,privHive,shard111,lqs0,etm2.500000,entm9.000000,mod,11:13",
         ),
         game_id: Some(
-            221100,
+            GameId(
+                221100,
+            ),
         ),
     },
     source_tv: None,

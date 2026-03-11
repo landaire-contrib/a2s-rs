@@ -1,6 +1,5 @@
 ---
 source: crates/a2s/tests/snapshot_test.rs
-assertion_line: 25
 expression: info
 ---
 Info {
@@ -9,7 +8,9 @@ Info {
     map: "chernarusplus",
     folder: "dayz",
     game: "https://www.discord.gg/KarmaKrew",
-    app_id: 0,
+    app_id: AppId(
+        0,
+    ),
     players: 29,
     max_players: 110,
     bots: 0,
@@ -25,13 +26,17 @@ Info {
             2302,
         ),
         steam_id: Some(
-            90282730693992465,
+            SteamId(
+                90282730693992465,
+            ),
         ),
         keywords: Some(
             "battleye,no3rd,external,privHive,shard100,lqs0,etm2.000000,entm11.000000,mod,06:54",
         ),
         game_id: Some(
-            221100,
+            GameId(
+                221100,
+            ),
         ),
     },
     source_tv: None,
