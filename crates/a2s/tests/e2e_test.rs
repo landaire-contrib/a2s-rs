@@ -117,6 +117,30 @@ fn sync_rules() {
     insta::assert_debug_snapshot!(snap_name("sync", path), rules);
 }
 
+#[test]
+fn sync_players_no_challenge() {
+    let path = "0/172_111_51_218_2402_players.bin";
+    let payload = fixture(path);
+    let addr = mock_server(vec![single_packet(&payload)]);
+
+    let client = A2SClient::new(Duration::from_secs(5)).unwrap();
+    let players = client.players(addr).unwrap();
+
+    insta::assert_debug_snapshot!(snap_name("sync", path), players);
+}
+
+#[test]
+fn sync_rules_no_challenge() {
+    let path = "0/172_111_51_218_2402_rules.bin";
+    let payload = fixture(path);
+    let addr = mock_server(vec![single_packet(&payload)]);
+
+    let client = A2SClient::new(Duration::from_secs(5)).unwrap();
+    let rules = client.rules(addr).unwrap();
+
+    insta::assert_debug_snapshot!(snap_name("sync", path), rules);
+}
+
 // -- Async client tests --
 
 #[cfg(feature = "async")]
@@ -193,6 +217,30 @@ mod async_tests {
             single_packet(&payload),
         ])
         .await;
+
+        let client = a2s::nonblocking::A2SClient::new().await.unwrap();
+        let rules = client.rules(addr).await.unwrap();
+
+        insta::assert_debug_snapshot!(snap_name("async", path), rules);
+    }
+
+    #[tokio::test]
+    async fn async_players_no_challenge() {
+        let path = "0/172_111_51_218_2402_players.bin";
+        let payload = fixture(path);
+        let addr = mock_server_async(vec![single_packet(&payload)]).await;
+
+        let client = a2s::nonblocking::A2SClient::new().await.unwrap();
+        let players = client.players(addr).await.unwrap();
+
+        insta::assert_debug_snapshot!(snap_name("async", path), players);
+    }
+
+    #[tokio::test]
+    async fn async_rules_no_challenge() {
+        let path = "0/172_111_51_218_2402_rules.bin";
+        let payload = fixture(path);
+        let addr = mock_server_async(vec![single_packet(&payload)]).await;
 
         let client = a2s::nonblocking::A2SClient::new().await.unwrap();
         let rules = client.rules(addr).await.unwrap();

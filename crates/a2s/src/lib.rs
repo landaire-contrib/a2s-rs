@@ -288,14 +288,14 @@ impl A2SClient {
         packet.write_i32::<LittleEndian>(-1)?;
 
         let data = self.send(packet.get_ref(), &addr)?;
-        let mut data = Cursor::new(data);
 
-        let header = data.read_u8()?;
-        if header != b'A' {
-            return Err(Error::InvalidResponse);
+        if data.first() != Some(&b'A') {
+            return Ok(data);
         }
 
-        let challenge = data.read_i32::<LittleEndian>()?;
+        let mut cursor = Cursor::new(&data);
+        cursor.read_u8()?; // skip 'A'
+        let challenge = cursor.read_i32::<LittleEndian>()?;
 
         packet.set_position(5);
         packet.write_i32::<LittleEndian>(challenge)?;

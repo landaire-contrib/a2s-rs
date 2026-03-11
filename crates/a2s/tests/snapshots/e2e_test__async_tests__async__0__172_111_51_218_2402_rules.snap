@@ -1,0 +1,59 @@
+---
+source: crates/a2s/tests/e2e_test.rs
+assertion_line: 248
+expression: rules
+---
+[
+    Rule {
+        name: "\x01\x04",
+        value: "\x02\x01\x02\x01\x02\x01\x02\t\xc5 \\\xd4\x04\xa0\x8aY\xaa\x16Zenarchist\'s Notes Mod\xfc\xecIm\x04\x01\x02\x08\'k\x12WindstrideClothing7\xd0S\x9d\x04\x8e\x8d\xbd\x7f\x16Advanced Weapon Scopes\xed4\xa9\x84\x04\xd0\xfa\xa8\x7f\x16ArmA 2 ACR Weapo",
+    },
+    Rule {
+        name: "\x02\x04",
+        value: "n Pack\x8e<\xbdK\x04\x11\xc6}\x80\x0eMortys WeaponsЈz\xbe\x04\x83c\xfc\xd8\rAsmondWeaponsj\xe7\xe3\x19\x04\xc3\x0c\xcb}\x06DayOne\xd0\xf1\x19\xb4\x04\x90\'9]\x16Community Online Tools\xc1Ưh\x04\x04\xb0\xef\\\x13Community Framew",
+    },
+    Rule {
+        name: "\x03\x04",
+        value: "ork\n\x06Asmond\x0bcftoolsRoot\x04dayz\x06Inkota\x0eJacob_Mango_V3\nliquidrock\tMandibull\x03TTC\x0cWindstrideV2\nZenarchistOVanilla-ish with no base bu",
+    },
+    Rule {
+        name: "\x04\x04",
+        value: "ilding. Have an adventure! https://discord.gg/dayone",
+    },
+    Rule {
+        name: "allowedBuild",
+        value: "0",
+    },
+    Rule {
+        name: "clientPort",
+        value: "0",
+    },
+    Rule {
+        name: "dedicated",
+        value: "1",
+    },
+    Rule {
+        name: "island",
+        value: "chernarusplus",
+    },
+    Rule {
+        name: "language",
+        value: "65545",
+    },
+    Rule {
+        name: "platform",
+        value: "win",
+    },
+    Rule {
+        name: "requiredBuild",
+        value: "0",
+    },
+    Rule {
+        name: "requiredVersion",
+        value: "128",
+    },
+    Rule {
+        name: "timeLeft",
+        value: "15",
+    },
+]
