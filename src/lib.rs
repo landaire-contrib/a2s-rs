@@ -99,6 +99,19 @@ macro_rules! read_buffer_offset {
     };
 }
 
+#[derive(Debug, Clone, Default)]
+pub struct DeOptions {
+    pub the_ship: bool,
+}
+
+impl DeOptions {
+    pub fn from_app_id(app_id: u16) -> Self {
+        Self {
+            the_ship: app_id == 2400,
+        }
+    }
+}
+
 #[derive(Debug)]
 struct PacketFragment {
     number: u8,
@@ -110,7 +123,7 @@ pub struct A2SClient {
     #[cfg(feature = "async")]
     timeout: Duration,
     max_size: usize,
-    app_id: u16,
+    de_options: DeOptions,
 }
 
 #[cfg(feature = "async")]
@@ -135,7 +148,7 @@ impl A2SClient {
         Ok(A2SClient {
             socket,
             max_size: 1400,
-            app_id: 0,
+            de_options: DeOptions::default(),
         })
     }
 
@@ -145,7 +158,7 @@ impl A2SClient {
             socket: UdpSocket::bind("0.0.0.0:0").await?,
             timeout: Duration::new(5, 0),
             max_size: 1400,
-            app_id: 0,
+            de_options: DeOptions::default(),
         })
     }
 
@@ -154,8 +167,14 @@ impl A2SClient {
         self
     }
 
+    #[deprecated(since = "0.6.2", note = "use de_options")]
     pub fn app_id(&mut self, app_id: u16) -> &mut Self {
-        self.app_id = app_id;
+        self.de_options = DeOptions::from_app_id(app_id);
+        self
+    }
+
+    pub fn de_options(&mut self, de_options: DeOptions) -> &mut Self {
+        self.de_options = de_options;
         self
     }
 

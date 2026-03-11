@@ -15,6 +15,7 @@ use serde::Deserialize;
 use serde::Serialize;
 
 use crate::A2SClient;
+use crate::DeOptions;
 use crate::ReadCString;
 use crate::errors::Error;
 use crate::errors::Result;
@@ -52,10 +53,10 @@ pub struct TheShipPlayer {
 impl Player {
     #[deprecated(since = "0.6.2", note = "use from_reader")]
     pub fn from_cursor(data: Cursor<Vec<u8>>, app_id: u16) -> Result<Vec<Self>> {
-        Self::from_reader(data, app_id)
+        Self::from_reader(data, &DeOptions::from_app_id(app_id))
     }
 
-    pub fn from_reader<R: Read>(mut data: R, app_id: u16) -> Result<Vec<Self>> {
+    pub fn from_reader<R: Read>(mut data: R, options: &DeOptions) -> Result<Vec<Self>> {
         if data.read_u8()? != 0x44 {
             return Err(Error::InvalidResponse);
         }
@@ -70,15 +71,13 @@ impl Player {
                 name: data.read_cstring()?,
                 score: data.read_i32::<LittleEndian>()?,
                 duration: data.read_f32::<LittleEndian>()?,
-                the_ship: {
-                    if app_id == 2400 {
-                        Some(TheShipPlayer {
-                            deaths: data.read_u32::<LittleEndian>()?,
-                            money: data.read_u32::<LittleEndian>()?,
-                        })
-                    } else {
-                        None
-                    }
+                the_ship: if options.the_ship {
+                    Some(TheShipPlayer {
+                        deaths: data.read_u32::<LittleEndian>()?,
+                        money: data.read_u32::<LittleEndian>()?,
+                    })
+                } else {
+                    None
                 },
             })
         }
@@ -91,12 +90,12 @@ impl A2SClient {
     #[cfg(feature = "async")]
     pub async fn players<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Player>> {
         let data = self.do_challenge_request(addr, &PLAYER_REQUEST).await?;
-        Player::from_reader(data.as_slice(), self.app_id)
+        Player::from_reader(data.as_slice(), &self.de_options)
     }
 
     #[cfg(not(feature = "async"))]
     pub fn players<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Player>> {
         let data = self.do_challenge_request(addr, &PLAYER_REQUEST)?;
-        Player::from_reader(data.as_slice(), self.app_id)
+        Player::from_reader(data.as_slice(), &self.de_options)
     }
 }
