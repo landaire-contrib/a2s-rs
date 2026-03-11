@@ -201,60 +201,113 @@ pub struct Info {
 }
 
 impl Info {
-    pub fn to_bytes(&self) -> Vec<u8> {
-        let mut bytes = Vec::new();
-        bytes.extend(&[0xff, 0xff, 0xff, 0xff, 0x49]);
-        bytes.push(self.protocol);
-        bytes.extend(self.name.as_bytes());
-        bytes.push(0);
-        bytes.extend(self.map.as_bytes());
-        bytes.push(0);
-        bytes.extend(self.folder.as_bytes());
-        bytes.push(0);
-        bytes.extend(self.game.as_bytes());
-        bytes.push(0);
-        bytes.extend(self.app_id.to_le_bytes());
-        bytes.push(self.players);
-        bytes.push(self.max_players);
-        bytes.push(self.bots);
-        bytes.push(self.server_type as u8);
-        bytes.push(self.server_os as u8);
-        bytes.push(if self.visibility { 1 } else { 0 });
-        bytes.push(if self.vac { 1 } else { 0 });
+    pub fn size_hint(&self) -> usize {
+        // header(5) + protocol(1) + name+nul + map+nul + folder+nul + game+nul
+        // + app_id(2) + players(1) + max_players(1) + bots(1) + server_type(1) + server_os(1)
+        // + visibility(1) + vac(1) + version+nul
+        let mut size = 5
+            + 1
+            + self.name.len()
+            + 1
+            + self.map.len()
+            + 1
+            + self.folder.len()
+            + 1
+            + self.game.len()
+            + 1
+            + 2
+            + 1
+            + 1
+            + 1
+            + 1
+            + 1
+            + 1
+            + 1
+            + self.version.len()
+            + 1;
 
-        if let Some(the_ship) = &self.the_ship {
-            bytes.push(the_ship.mode as u8);
-            bytes.push(the_ship.witnesses);
-            bytes.push(the_ship.duration);
+        if self.the_ship.is_some() {
+            size += 3;
         }
 
-        bytes.extend(self.version.as_bytes());
-        bytes.push(0);
+        if self.edf != 0 {
+            size += 1; // edf byte
+        }
+        if self.extended_server_info.port.is_some() {
+            size += 2;
+        }
+        if self.extended_server_info.steam_id.is_some() {
+            size += 8;
+        }
+        if let Some(keywords) = &self.extended_server_info.keywords {
+            size += keywords.len() + 1;
+        }
+        if self.extended_server_info.game_id.is_some() {
+            size += 8;
+        }
+        if let Some(source_tv) = &self.source_tv {
+            size += 2 + source_tv.name.len() + 1;
+        }
+
+        size
+    }
+
+    pub fn write<W: Write>(&self, mut w: W) -> Result<()> {
+        w.write_all(&[0xff, 0xff, 0xff, 0xff, 0x49])?;
+        w.write_all(&[self.protocol])?;
+        w.write_all(self.name.as_bytes())?;
+        w.write_all(&[0])?;
+        w.write_all(self.map.as_bytes())?;
+        w.write_all(&[0])?;
+        w.write_all(self.folder.as_bytes())?;
+        w.write_all(&[0])?;
+        w.write_all(self.game.as_bytes())?;
+        w.write_all(&[0])?;
+        w.write_all(&self.app_id.to_le_bytes())?;
+        w.write_all(&[self.players, self.max_players, self.bots])?;
+        w.write_all(&[self.server_type as u8])?;
+        w.write_all(&[self.server_os as u8])?;
+        w.write_all(&[if self.visibility { 1 } else { 0 }])?;
+        w.write_all(&[if self.vac { 1 } else { 0 }])?;
+
+        if let Some(the_ship) = &self.the_ship {
+            w.write_all(&[the_ship.mode as u8, the_ship.witnesses, the_ship.duration])?;
+        }
+
+        w.write_all(self.version.as_bytes())?;
+        w.write_all(&[0])?;
 
         if self.edf != 0 {
-            bytes.push(self.edf);
+            w.write_all(&[self.edf])?;
         }
 
         if let Some(port) = &self.extended_server_info.port {
-            bytes.extend(port.to_le_bytes());
+            w.write_all(&port.to_le_bytes())?;
         }
         if let Some(steam_id) = &self.extended_server_info.steam_id {
-            bytes.extend(steam_id.to_le_bytes());
+            w.write_all(&steam_id.to_le_bytes())?;
         }
         if let Some(keywords) = &self.extended_server_info.keywords {
-            bytes.extend(keywords.as_bytes());
-            bytes.push(0);
+            w.write_all(keywords.as_bytes())?;
+            w.write_all(&[0])?;
         }
         if let Some(game_id) = &self.extended_server_info.game_id {
-            bytes.extend(game_id.to_le_bytes());
+            w.write_all(&game_id.to_le_bytes())?;
         }
 
         if let Some(source_tv) = &self.source_tv {
-            bytes.extend(source_tv.port.to_le_bytes());
-            bytes.extend(source_tv.name.as_bytes());
-            bytes.push(0);
+            w.write_all(&source_tv.port.to_le_bytes())?;
+            w.write_all(source_tv.name.as_bytes())?;
+            w.write_all(&[0])?;
         }
 
+        Ok(())
+    }
+
+    pub fn to_bytes(&self) -> Vec<u8> {
+        let mut bytes = Vec::with_capacity(self.size_hint());
+        self.write(&mut bytes)
+            .expect("writing to Vec should not fail");
         bytes
     }
 
