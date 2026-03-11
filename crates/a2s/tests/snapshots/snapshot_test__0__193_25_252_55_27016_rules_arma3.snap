@@ -203,7 +203,7 @@ Arma3Rules {
         "Wardog.v3",
         "WindstrideV2",
     ],
-    description: " https://www.discord.gg/KarmaKrew",
+    description: "https://www.discord.gg/KarmaKrew",
     rules: [
         Rule {
             name: "allowedBuild",

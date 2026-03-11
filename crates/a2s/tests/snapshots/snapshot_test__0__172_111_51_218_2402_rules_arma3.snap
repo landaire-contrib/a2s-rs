@@ -108,7 +108,7 @@ Arma3Rules {
         "WindstrideV2",
         "Zenarchist",
     ],
-    description: "OVanilla-ish with no base building. Have an adventure! https://discord.gg/dayone",
+    description: "Vanilla-ish with no base building. Have an adventure! https://discord.gg/dayone",
     rules: [
         Rule {
             name: "allowedBuild",

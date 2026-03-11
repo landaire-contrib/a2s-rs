@@ -137,9 +137,11 @@ impl Arma3Rules {
             signatures.push(BString::new(sig_buf));
         }
 
-        // Remaining bytes are the server description
-        let pos = cursor.position() as usize;
-        let description = BString::new(stream[pos..].to_vec());
+        // Description: length-prefixed string
+        let desc_len = cursor.read_u8()? as usize;
+        let mut desc_buf = vec![0u8; desc_len];
+        cursor.read_exact(&mut desc_buf)?;
+        let description = BString::new(desc_buf);
 
         Ok(Arma3Rules {
             version,

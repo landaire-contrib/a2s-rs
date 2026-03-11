@@ -86,7 +86,7 @@ Arma3Rules {
         "sumrak",
         "WindstrideV2",
     ],
-    description: "BNamalsk using Sumrak\'s Hardcore mission. https://discord.gg/dayone",
+    description: "Namalsk using Sumrak\'s Hardcore mission. https://discord.gg/dayone",
     rules: [
         Rule {
             name: "allowedBuild",

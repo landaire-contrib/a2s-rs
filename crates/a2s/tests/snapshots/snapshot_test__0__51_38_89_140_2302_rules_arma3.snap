@@ -194,7 +194,7 @@ Arma3Rules {
         "ZERO_huffysar15config",
         "ZERO_VoDx",
     ],
-    description: "\x9bAll settings as per the Deer Isle map creator with extra clothing and Quality of Life balances. Join the discussion at https://discord.com/invite/zero-dayz",
+    description: "All settings as per the Deer Isle map creator with extra clothing and Quality of Life balances. Join the discussion at https://discord.com/invite/zero-dayz",
     rules: [
         Rule {
             name: "allowedBuild",
