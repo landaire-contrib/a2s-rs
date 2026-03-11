@@ -2,6 +2,7 @@ use std::io::Cursor;
 use std::io::Read;
 use std::net::ToSocketAddrs;
 
+use bstr::BString;
 use byteorder::LittleEndian;
 use byteorder::ReadBytesExt;
 
@@ -28,7 +29,8 @@ pub struct Player {
     pub index: u8,
 
     /// Name of the player.
-    pub name: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub name: BString,
 
     /// Player's score (usually "frags" or "kills".)
     pub score: i32,

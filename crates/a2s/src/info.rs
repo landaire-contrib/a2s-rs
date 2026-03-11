@@ -10,6 +10,8 @@ use serde::Deserialize;
 #[cfg(feature = "serde")]
 use serde::Serialize;
 
+use bstr::BString;
+use bstr::ByteSlice;
 use byteorder::LittleEndian;
 use byteorder::ReadBytesExt;
 use byteorder::WriteBytesExt;
@@ -81,7 +83,8 @@ pub struct ExtendedServerInfo {
 
     /// Tags that describe the game according to the server (for future use.)
     /// Available if edf & 0x20 is true
-    pub keywords: Option<String>,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_option_bstring))]
+    pub keywords: Option<BString>,
 
     /// The server's 64-bit GameID. If this is present, a more accurate AppID is present in the low 24 bits.
     /// The earlier AppID could have been truncated as it was forced into 16-bit storage.
@@ -97,7 +100,8 @@ pub struct SourceTVInfo {
     pub port: u16,
 
     /// Name of the spectator server for SourceTV.
-    pub name: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub name: BString,
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -153,16 +157,20 @@ pub struct Info {
     pub protocol: u8,
 
     /// Name of the server.
-    pub name: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub name: BString,
 
     /// Map the server has currently loaded.
-    pub map: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub map: BString,
 
     /// Name of the folder containing the game files.
-    pub folder: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub folder: BString,
 
     /// Full name of the game.
-    pub game: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub game: BString,
 
     /// Steam Application ID of game.
     pub app_id: u16,
@@ -193,7 +201,8 @@ pub struct Info {
     pub the_ship: Option<TheShip>,
 
     /// Version of the game installed on the server.
-    pub version: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub version: BString,
 
     /// If present, this specifies which additional data fields will be included.
     pub edf: u8,

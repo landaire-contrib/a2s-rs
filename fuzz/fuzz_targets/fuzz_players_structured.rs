@@ -13,8 +13,8 @@ struct FuzzPlayers {
     players: Vec<Player>,
 }
 
-fn write_cstring(buf: &mut Vec<u8>, s: &str) {
-    for &b in s.as_bytes() {
+fn write_cstring(buf: &mut Vec<u8>, s: &[u8]) {
+    for &b in s {
         if b != 0 {
             buf.push(b);
         }

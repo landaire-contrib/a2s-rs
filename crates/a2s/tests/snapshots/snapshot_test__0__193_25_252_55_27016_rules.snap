@@ -5,31 +5,31 @@ expression: rules
 ---
 [
     Rule {
-        name: "\u{1}\u{7}",
-        value: "\u{2}\u{1}\u{2}\u{1}\u{2}\u{1}\u{2}\u{11}�2�\u{4}�,�\u{17}Building Fortifications��\u{16}\u{4}��8m\rFlipTransport�85�\u{4}�\u{14}��\u{13}Dutch Army Clothing�\u{10}B^\u{4}�MU]\u{c}BuilderItems�%�\"\u{4}��\u{c}i\u{1b}Un",
+        name: "\x01\x07",
+        value: "\x02\x01\x02\x01\x02\x01\x02\x11\xd62\xe2\xb9\x04\xe6\xb3,\x9f\x17Building Fortifications\xb0\xe0\xaf\x16\x04\xb7\xf08m\rFlipTransport\xc085\xa2\x04\xbc\x14\xa2\xb8\x13Dutch Army Clothing\xd1\x10B^\x04\x83MU]\x0cBuilderItems\x92%\x83\"\x04\x8f\xc3\x0ci\x1bUn",
     },
     Rule {
-        name: "\u{2}\u{7}",
-        value: "cuepa's Civilian Clothing\u{1}\u{2}�;�\u{4}�~0w\u{1f}Cold War Uniforms: Project Iron�\u{13}�.\u{4}��sl\tEar Plugs?,\u{10}\u{1}\u{1}\u{4}�Z��\u{e}MagObfuscation�\u{6dd}\u{1c}\u{4}T��l\rVPPAdm",
+        name: "\x02\x07",
+        value: "cuepa\'s Civilian Clothing\x01\x02\xa9;\x9c\x04\xab~0w\x1fCold War Uniforms: Project Iron\x8f\x13\xc8.\x04\xa4\x97sl\tEar Plugs?,\x10\x01\x01\x04\xa3Z\xfc\x91\x0eMagObfuscation\xe0\u{6dd}\x1c\x04T\xc4\xfbl\rVPPAdm",
     },
     Rule {
-        name: "\u{3}\u{7}",
-        value: "inTools\u{1b}\u{18}�\u{1e}\u{4}��\u{1e}b\u{8}CodeLock�QV�\u{4} ���\u{e}Dabs Framework��Im\u{4}\u{1}\u{2}\u{8}'k\u{12}WindstrideClothing�\u{1c}��\u{4}Z츪\tKarmaKrew4*;�\u{4}�$L�\u{14}VanillaRoadPartsPack",
+        name: "\x03\x07",
+        value: "inTools\x1b\x18\xdb\x1e\x04\xea\xd4\x1eb\x08CodeLock\xe1QV\xe5\x04 \x9e\xb6\x97\x0eDabs Framework\xfc\xecIm\x04\x01\x02\x08\'k\x12WindstrideClothing\xfa\x1c\xdf\xc8\x04Z츪\tKarmaKrew4*;\xb8\x04\xd8$L\x8c\x14VanillaRoadPartsPack",
     },
     Rule {
-        name: "\u{4}\u{7}",
-        value: "�Ưh\u{4}\u{4}��\\\u{13}Community FrameworkQˌ�\u{4}e�ʴ\u{1b}KarmaKrew Chernarus Balance7�S�\u{4}���\u{7f}\u{16}Advanced Weapon Scopes\u{19}\u{c}bastard.info\u{17}Building-Forti",
+        name: "\x04\x07",
+        value: "\xc1Ưh\x04\x04\xb0\xef\\\x13Community FrameworkQˌ\xf1\x04e\xa7ʴ\x1bKarmaKrew Chernarus Balance7\xd0S\x9d\x04\x8e\x8d\xbd\x7f\x16Advanced Weapon Scopes\x19\x0cbastard.info\x17Building-Forti",
     },
     Rule {
-        name: "\u{5}\u{7}",
-        value: "fications\u{b}cftoolsRoot\nCodeLockv3\u{b}CooltrainV3\u{5}cynep\u{3}dab\u{4}dayz\tExpansion\u{e}GormirnV2Roads\u{7}Hunterz\u{c}InclementDab\u{6}Inkota\u{e}Jacob_Mango_V3",
+        name: "\x05\x07",
+        value: "fications\x0bcftoolsRoot\nCodeLockv3\x0bCooltrainV3\x05cynep\x03dab\x04dayz\tExpansion\x0eGormirnV2Roads\x07Hunterz\x0cInclementDab\x06Inkota\x0eJacob_Mango_V3",
     },
     Rule {
-        name: "\u{6}\u{7}",
-        value: "\u{5}JESSR\u{10}KarmaKrewDevTeam\u{4}L4DS\u{e}LBmasterPub_v3\u{c}NotABananaV3\tSirKydric\u{3}TRG\u{7}Uncuepa\u{3}VPP\tWardog.v3\u{c}WindstrideV2 https://www.discord.g",
+        name: "\x06\x07",
+        value: "\x05JESSR\x10KarmaKrewDevTeam\x04L4DS\x0eLBmasterPub_v3\x0cNotABananaV3\tSirKydric\x03TRG\x07Uncuepa\x03VPP\tWardog.v3\x0cWindstrideV2 https://www.discord.g",
     },
     Rule {
-        name: "\u{7}\u{7}",
+        name: "\x07\x07",
         value: "g/KarmaKrew",
     },
     Rule {

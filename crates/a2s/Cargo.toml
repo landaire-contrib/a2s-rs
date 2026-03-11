@@ -12,6 +12,7 @@ keywords = ["steam", "query"]
 
 [dependencies]
 arbitrary = { version = "1", features = ["derive"], optional = true }
+bstr = { version = "1", features = ["serde"] }
 byteorder = "1"
 bzip2 = "0.4.4"
 crc = "1"

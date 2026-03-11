@@ -3,6 +3,8 @@ use std::io::Read;
 use std::io::Write;
 use std::net::ToSocketAddrs;
 
+use bstr::BString;
+use bstr::ByteSlice;
 use byteorder::LittleEndian;
 use byteorder::ReadBytesExt;
 
@@ -24,10 +26,12 @@ pub const RULES_REQUEST: [u8; 5] = [0xFF, 0xFF, 0xFF, 0xFF, 0x56];
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Rule {
     /// Name of the rule.
-    pub name: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub name: BString,
 
     /// Value of the rule.
-    pub value: String,
+    #[cfg_attr(feature = "arbitrary", arbitrary(with = crate::arbitrary_bstring))]
+    pub value: BString,
 }
 
 impl Rule {

@@ -5,36 +5,36 @@ expression: rules
 ---
 [
     Rule {
-        name: "\u{1}\n",
-        value: "\u{2}\u{8}\u{1}\u{2}\u{1}\u{2}\u{c}�!!�\u{4}2Ї�\u{15}JD's Animated WeaponsЈz�\u{4}�c��\rAsmondWeapons��\"t\u{4}\u{1f}�\u{18}�\u{c}DayZ Bicycle����\u{4}�34�\u{16}SkyZ - Skybox Overhaul\u{11}J\n�\u{4}'0��\u{1c}Al",
+        name: "\x01\n",
+        value: "\x02\x08\x01\x02\x01\x02\x0c\xd8!!\xed\x042Ї\xc4\x15JD\'s Animated WeaponsЈz\xbe\x04\x83c\xfc\xd8\rAsmondWeapons\xb2\xc0\"t\x04\x1f\xc4\x18\xb1\x0cDayZ Bicycle\x91\xbe\xf7\xee\x04\x8f34\x97\x16SkyZ - Skybox Overhaul\x11J\n\xd9\x04\'0\xf8\xc7\x1cAl",
     },
     Rule {
-        name: "\u{2}\n",
-        value: "evaric's Clothing Overhaul��Im\u{4}\u{1}\u{2}\u{8}'k\u{12}WindstrideClothing�FP�\u{4}���\u{13}Survivor AnimationsP\u{13}�w\u{4};�\u{5}�\u{f}Mounts & Sights���Z\u{4}.�\u{15}�\u{e}ZERO Dee",
+        name: "\x02\n",
+        value: "evaric\'s Clothing Overhaul\xfc\xecIm\x04\x01\x02\x08\'k\x12WindstrideClothing\xdfFP\xba\x04\x9b\x87\xf3\xad\x13Survivor AnimationsP\x13\x8bw\x04;\x8b\x05\xc6\x0fMounts & Sights\xab\xdb\xc0Z\x04.\x98\x15\xd3\x0eZERO Dee",
     },
     Rule {
-        name: "\u{3}\n",
-        value: "r Isle��^�\u{4}2C�_\u{8}DeerIsle��\u{19}�\u{4}�'9]\u{16}Community Online Tools�Ưh\u{4}\u{4}��\\\u{13}Community FrameworkB\u{3}7ka\u{14}Akol.MountsAndSights\u{6}Alpace\u{3}ALV\u{6}Asmo",
+        name: "\x03\n",
+        value: "r Isle\xab\xb5^\xdc\x042C\x82_\x08DeerIsle\xd0\xf1\x19\xb4\x04\x90\'9]\x16Community Online Tools\xc1Ưh\x04\x04\xb0\xef\\\x13Community FrameworkB\x037ka\x14Akol.MountsAndSights\x06Alpace\x03ALV\x06Asmo",
     },
     Rule {
-        name: "\u{4}\n",
-        value: "nd\u{4}AWOL\tAzraelMod\u{6}B3TR4Y\u{f}BeautifulPotato\u{4}BGOM\u{5}Buddy\u{c}Building_Key\u{b}cftoolsRoot\u{5}cynep\u{b}CypeRevenge\u{b}daemonforge\tDannyDoom\u{4}dayz\u{e}decea",
+        name: "\x04\n",
+        value: "nd\x04AWOL\tAzraelMod\x06B3TR4Y\x0fBeautifulPotato\x04BGOM\x05Buddy\x0cBuilding_Key\x0bcftoolsRoot\x05cynep\x0bCypeRevenge\x0bdaemonforge\tDannyDoom\x04dayz\x0edecea",
     },
     Rule {
-        name: "\u{5}\n",
-        value: "sed_steam\ndeerisle59\tdesignful\u{11}ElderWoodZIkeozzy\u{10}FlickeringLights\u{6}FTM228\tGhostWolf\nHAPPYBOMBS\u{b}HuffyPublic\u{7}Hunterz\u{c}InclementDab\u{19}",
+        name: "\x05\n",
+        value: "sed_steam\ndeerisle59\tdesignful\x11ElderWoodZIkeozzy\x10FlickeringLights\x06FTM228\tGhostWolf\nHAPPYBOMBS\x0bHuffyPublic\x07Hunterz\x0cInclementDab\x19",
     },
     Rule {
-        name: "\u{6}\n",
-        value: "Indi_Increased_Lumens_1.5\u{6}Inedia\u{6}Inkota\u{e}Jacob_Mango_V3\u{3}JAD\u{6}JayDee\u{8}M4ketech\u{6}Makoni\u{8}Mikey551\u{7}mikeyxb\tMrZinKNWR\u{c}NathSoftware\u{c}NotAB",
+        name: "\x06\n",
+        value: "Indi_Increased_Lumens_1.5\x06Inedia\x06Inkota\x0eJacob_Mango_V3\x03JAD\x06JayDee\x08M4ketech\x06Makoni\x08Mikey551\x07mikeyxb\tMrZinKNWR\x0cNathSoftware\x0cNotAB",
     },
     Rule {
-        name: "\u{7}\n",
-        value: "ananaV3\u{5}NoWay\u{6}predek\u{6}Rajjip\tRedFalcon\u{6}ruffaz\u{5}shade\u{2}SP\u{6}sumrak\rTheEmperorFox\nTheOutpost\u{8}THE_WOLF\u{6}THYER5\u{15}VoDxRetextures_Vorian\u{c}VoD",
+        name: "\x07\n",
+        value: "ananaV3\x05NoWay\x06predek\x06Rajjip\tRedFalcon\x06ruffaz\x05shade\x02SP\x06sumrak\rTheEmperorFox\nTheOutpost\x08THE_WOLF\x06THYER5\x15VoDxRetextures_Vorian\x0cVoD",
     },
     Rule {
-        name: "\u{8}\n",
-        value: "x_ACO_Fix\u{b}VoDx_Extras\tVoDx_Mags\u{3}VPP\u{8}Welliton\u{c}WindstrideV2\u{2}XM\u{7}Z6Signs\nZenarchist\u{15}ZERO_huffysar15config\tZERO_VoDx�All settings as",
+        name: "\x08\n",
+        value: "x_ACO_Fix\x0bVoDx_Extras\tVoDx_Mags\x03VPP\x08Welliton\x0cWindstrideV2\x02XM\x07Z6Signs\nZenarchist\x15ZERO_huffysar15config\tZERO_VoDx\x9bAll settings as",
     },
     Rule {
         name: "\t\n",

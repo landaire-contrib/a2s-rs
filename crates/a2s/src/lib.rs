@@ -13,6 +13,7 @@ use std::net::UdpSocket;
 use std::ops::Deref;
 use std::time::Duration;
 
+use bstr::BString;
 use byteorder::LittleEndian;
 use byteorder::ReadBytesExt;
 use byteorder::WriteBytesExt;
@@ -94,6 +95,23 @@ macro_rules! read_buffer_offset {
 
 #[cfg(feature = "async")]
 pub(crate) use read_buffer_offset;
+
+#[cfg(feature = "arbitrary")]
+pub(crate) fn arbitrary_bstring(u: &mut arbitrary::Unstructured<'_>) -> arbitrary::Result<BString> {
+    let bytes: Vec<u8> = arbitrary::Arbitrary::arbitrary(u)?;
+    Ok(BString::new(bytes))
+}
+
+#[cfg(feature = "arbitrary")]
+pub(crate) fn arbitrary_option_bstring(
+    u: &mut arbitrary::Unstructured<'_>,
+) -> arbitrary::Result<Option<BString>> {
+    if arbitrary::Arbitrary::arbitrary(u)? {
+        Ok(Some(arbitrary_bstring(u)?))
+    } else {
+        Ok(None)
+    }
+}
 
 #[derive(Debug, Clone, Default)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
@@ -288,17 +306,17 @@ impl A2SClient {
 }
 
 pub(crate) trait ReadCString: Read {
-    fn read_cstring(&mut self) -> Result<String> {
-        let mut str_vec = Vec::with_capacity(256);
+    fn read_cstring(&mut self) -> Result<BString> {
+        let mut buf = Vec::with_capacity(256);
         while let Ok(byte) = self.read_u8() {
             if byte == 0 {
                 break;
             }
 
-            str_vec.push(byte);
+            buf.push(byte);
         }
 
-        Ok(String::from_utf8_lossy(&str_vec[..]).into_owned())
+        Ok(BString::new(buf))
     }
 }
 
