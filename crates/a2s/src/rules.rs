@@ -1,14 +1,10 @@
 use std::io::Cursor;
 use std::io::Read;
 use std::io::Write;
-#[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
 
 use byteorder::LittleEndian;
 use byteorder::ReadBytesExt;
-
-#[cfg(feature = "async")]
-use tokio::net::ToSocketAddrs;
 
 #[cfg(feature = "serde")]
 use serde::Deserialize;
@@ -99,13 +95,6 @@ impl Rule {
 }
 
 impl A2SClient {
-    #[cfg(feature = "async")]
-    pub async fn rules<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Rule>> {
-        let data = self.do_challenge_request(addr, &RULES_REQUEST).await?;
-        Rule::from_reader(data.as_slice())
-    }
-
-    #[cfg(not(feature = "async"))]
     pub fn rules<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Rule>> {
         let data = self.do_challenge_request(addr, &RULES_REQUEST)?;
         Rule::from_reader(data.as_slice())

@@ -1,10 +1,6 @@
 use std::io::Cursor;
 use std::io::Read;
-#[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
-
-#[cfg(feature = "async")]
-use tokio::net::ToSocketAddrs;
 
 use byteorder::LittleEndian;
 use byteorder::ReadBytesExt;
@@ -88,13 +84,6 @@ impl Player {
 }
 
 impl A2SClient {
-    #[cfg(feature = "async")]
-    pub async fn players<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Player>> {
-        let data = self.do_challenge_request(addr, &PLAYER_REQUEST).await?;
-        Player::from_reader(data.as_slice(), &self.de_options)
-    }
-
-    #[cfg(not(feature = "async"))]
     pub fn players<A: ToSocketAddrs>(&self, addr: A) -> Result<Vec<Player>> {
         let data = self.do_challenge_request(addr, &PLAYER_REQUEST)?;
         Player::from_reader(data.as_slice(), &self.de_options)

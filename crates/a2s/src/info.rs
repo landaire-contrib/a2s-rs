@@ -3,11 +3,7 @@ use std::io::Cursor;
 use std::io::ErrorKind;
 use std::io::Read;
 use std::io::Write;
-#[cfg(not(feature = "async"))]
 use std::net::ToSocketAddrs;
-
-#[cfg(feature = "async")]
-use tokio::net::ToSocketAddrs;
 
 #[cfg(feature = "serde")]
 use serde::Deserialize;
@@ -410,28 +406,6 @@ impl Info {
 }
 
 impl A2SClient {
-    #[cfg(feature = "async")]
-    pub async fn info<A: ToSocketAddrs>(&self, addr: A) -> Result<Info> {
-        let response = self.send(&INFO_REQUEST, &addr).await?;
-
-        let mut packet = Cursor::new(&response);
-
-        let header = packet.read_u8()?;
-        if header == b'A' {
-            let challenge = packet.read_i32::<LittleEndian>()?;
-
-            let mut query = Vec::with_capacity(29);
-            query.write_all(&INFO_REQUEST)?;
-            query.write_i32::<LittleEndian>(challenge)?;
-
-            let data = self.send(&query, addr).await?;
-            Info::from_reader(data.as_slice())
-        } else {
-            Info::from_reader(response.as_slice())
-        }
-    }
-
-    #[cfg(not(feature = "async"))]
     pub fn info<A: ToSocketAddrs>(&self, addr: A) -> Result<Info> {
         let response = self.send(&INFO_REQUEST, &addr)?;
 
