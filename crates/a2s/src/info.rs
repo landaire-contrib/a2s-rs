@@ -30,6 +30,7 @@ pub const INFO_REQUEST: [u8; 25] = [
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 pub struct TheShip {
     /// Indicates the game mode
     pub mode: TheShipMode,
@@ -44,6 +45,7 @@ pub struct TheShip {
 #[derive(Debug, Clone, Copy)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 #[repr(u8)]
 pub enum TheShipMode {
     Hunt = 0,
@@ -72,6 +74,7 @@ impl From<u8> for TheShipMode {
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 pub struct ExtendedServerInfo {
     /// The server's game port number.
     /// Available if edf & 0x80 is true
@@ -95,6 +98,7 @@ pub struct ExtendedServerInfo {
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 pub struct SourceTVInfo {
     /// Spectator port number for SourceTV.
     pub port: u16,
@@ -107,6 +111,7 @@ pub struct SourceTVInfo {
 #[derive(Debug, Clone, Copy)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 #[repr(u8)]
 pub enum ServerType {
     Dedicated = b'd',
@@ -129,6 +134,7 @@ impl TryFrom<u8> for ServerType {
 #[derive(Debug, Clone, Copy)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 #[repr(u8)]
 pub enum ServerOS {
     Linux = b'l',
@@ -152,6 +158,7 @@ impl TryFrom<u8> for ServerOS {
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "arbitrary", derive(arbitrary::Arbitrary))]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 pub struct Info {
     /// Protocol version used by the server.
     pub protocol: u8,

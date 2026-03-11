@@ -36,6 +36,7 @@ pub struct ModHash(pub u32);
 /// A mod entry from the server's mod list.
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 pub struct Mod {
     pub hash: ModHash,
     pub is_dlc: bool,
@@ -49,6 +50,7 @@ pub struct Mod {
 /// Standard key-value rules (e.g. "island", "platform") are returned separately.
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[non_exhaustive]
 pub struct Arma3Rules {
     /// Protocol version (typically 2).
     pub version: u32,
