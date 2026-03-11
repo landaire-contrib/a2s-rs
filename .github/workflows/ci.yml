@@ -74,3 +74,27 @@ jobs:
         with:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
       - run: cargo test --workspace --all-features
+
+  fuzz:
+    name: Fuzz
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+            fuzz/target/
+          key: ${{ runner.os }}-fuzz-${{ hashFiles('**/Cargo.lock') }}
+      - uses: dtolnay/rust-toolchain@nightly
+      - run: cargo install cargo-fuzz --locked || true
+      - run: |
+          for target in $(cargo +nightly fuzz list); do
+            echo "::group::Fuzzing $target"
+            cargo +nightly fuzz run "$target" -- -max_total_time=30
+            echo "::endgroup::"
+          done
