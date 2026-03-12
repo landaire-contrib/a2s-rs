@@ -25,6 +25,7 @@ use crate::errors::Result;
 
 pub(crate) const SINGLE_PACKET: i32 = -1;
 pub(crate) const MULTI_PACKET: i32 = -2;
+pub(crate) const MAX_CHALLENGE_RETRIES: usize = 3;
 
 /// Response header bytes.
 pub const HEADER_CHALLENGE: u8 = b'A';
@@ -328,19 +329,21 @@ impl A2SClient {
         packet.write_all(header)?;
         packet.write_i32::<LittleEndian>(-1)?;
 
-        let data = self.send(packet.get_ref(), &addr)?;
+        let mut data = self.send(packet.get_ref(), &addr)?;
 
-        if data.first() != Some(&HEADER_CHALLENGE) {
-            return Ok(data);
+        for _ in 0..MAX_CHALLENGE_RETRIES {
+            if data.first() != Some(&HEADER_CHALLENGE) {
+                return Ok(data);
+            }
+
+            let mut cursor = Cursor::new(&data);
+            cursor.read_u8()?; // skip challenge header
+            let challenge = cursor.read_i32::<LittleEndian>()?;
+
+            packet.set_position(5);
+            packet.write_i32::<LittleEndian>(challenge)?;
+            data = self.send(packet.get_ref(), &addr)?;
         }
-
-        let mut cursor = Cursor::new(&data);
-        cursor.read_u8()?; // skip challenge header
-        let challenge = cursor.read_i32::<LittleEndian>()?;
-
-        packet.set_position(5);
-        packet.write_i32::<LittleEndian>(challenge)?;
-        let data = self.send(packet.get_ref(), &addr)?;
 
         Ok(data)
     }

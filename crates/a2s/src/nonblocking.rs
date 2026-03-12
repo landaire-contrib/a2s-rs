@@ -13,6 +13,7 @@ use tokio::net::UdpSocket;
 
 use crate::DeOptions;
 use crate::HEADER_CHALLENGE;
+use crate::MAX_CHALLENGE_RETRIES;
 use crate::PacketFragment;
 use crate::errors::Error;
 use crate::errors::Result;
@@ -181,19 +182,21 @@ impl A2SClient {
         packet.write_all(header)?;
         packet.write_i32::<LittleEndian>(-1)?;
 
-        let data = self.send(packet.get_ref(), &addr).await?;
+        let mut data = self.send(packet.get_ref(), &addr).await?;
 
-        if data.first() != Some(&HEADER_CHALLENGE) {
-            return Ok(data);
+        for _ in 0..MAX_CHALLENGE_RETRIES {
+            if data.first() != Some(&HEADER_CHALLENGE) {
+                return Ok(data);
+            }
+
+            let mut cursor = Cursor::new(&data);
+            cursor.read_u8()?; // skip challenge header
+            let challenge = cursor.read_i32::<LittleEndian>()?;
+
+            packet.set_position(5);
+            packet.write_i32::<LittleEndian>(challenge)?;
+            data = self.send(packet.get_ref(), &addr).await?;
         }
-
-        let mut cursor = Cursor::new(&data);
-        cursor.read_u8()?; // skip challenge header
-        let challenge = cursor.read_i32::<LittleEndian>()?;
-
-        packet.set_position(5);
-        packet.write_i32::<LittleEndian>(challenge)?;
-        let data = self.send(packet.get_ref(), &addr).await?;
 
         Ok(data)
     }
