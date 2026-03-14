@@ -366,8 +366,8 @@ impl Info {
         let bots = data.read_u8()?;
         let server_type = ServerType::try_from(data.read_u8()?)?;
         let server_os = ServerOS::try_from(data.read_u8()?)?;
-        let visibility = data.read_u8()? != 0;
-        let vac = data.read_u8()? != 0;
+        let visibility = read_bool(&mut data, "visibility")?;
+        let vac = read_bool(&mut data, "vac")?;
         let the_ship = if app_id == AppId::THE_SHIP {
             Some(TheShip {
                 mode: TheShipMode::from(data.read_u8()?),
@@ -443,6 +443,15 @@ impl Info {
             extended_server_info,
             source_tv,
         })
+    }
+}
+
+fn read_bool<R: Read>(data: &mut R, field: &'static str) -> Result<bool> {
+    let value = data.read_u8()?;
+    match value {
+        0 => Ok(false),
+        1 => Ok(true),
+        _ => Err(Error::InvalidBool { field, value }),
     }
 }
 

@@ -34,4 +34,7 @@ pub enum Error {
 
     #[error("steam ID length exceeds 8 bytes")]
     SteamIdTooLong,
+
+    #[error("expected boolean (0 or 1) for {field}, got 0x{value:02X}")]
+    InvalidBool { field: &'static str, value: u8 },
 }

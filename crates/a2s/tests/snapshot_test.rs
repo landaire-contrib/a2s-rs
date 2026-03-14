@@ -274,3 +274,18 @@ fn arma3_rules_dayzero_deerisle() {
 fn arma3_rules_karmakrew_chernarus() {
     test_arma3_rules("0/193_25_252_55_27016_rules.bin");
 }
+
+// -- Malformed server responses --
+
+/// Server sends ASCII '1' (0x31) for the VAC boolean instead of binary 1 (0x01).
+/// This should produce an InvalidBool error rather than silently misinterpreting
+/// the version string.
+#[test]
+fn info_rejects_invalid_vac_byte() {
+    let data = fixture("unknown/115_190_141_50_27021_info.bin");
+    let err = Info::from_reader(data.as_slice()).unwrap_err();
+    assert!(
+        err.to_string().contains("vac"),
+        "expected InvalidBool error for vac field, got: {err}"
+    );
+}
