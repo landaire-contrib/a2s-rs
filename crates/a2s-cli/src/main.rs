@@ -97,6 +97,32 @@ fn write_fixture(dir: &Path, slug: &str, kind: &str, data: &[u8]) {
     println!("  wrote {} ({} bytes)", path.display(), data.len());
 }
 
+fn query(client: &A2SClient, addr: &str) {
+    match client.info(addr) {
+        Ok(info) => {
+            println!("  name:        {}", info.name);
+            println!("  map:         {}", info.map);
+            println!("  game:        {}", info.game);
+            println!("  players:     {}/{}", info.players, info.max_players);
+            println!("  bots:        {}", info.bots);
+            println!("  server_type: {:?}", info.server_type);
+            println!("  server_os:   {:?}", info.server_os);
+            println!("  vac:         {}", info.vac);
+            println!("  version:     {}", info.version);
+            if let Some(port) = info.extended_server_info.port {
+                println!("  game_port:   {port}");
+            }
+            if let Some(keywords) = &info.extended_server_info.keywords {
+                println!("  keywords:    {keywords}");
+            }
+            if let Some(game_id) = info.extended_server_info.game_id {
+                println!("  game_id:     {}", game_id.0);
+            }
+        }
+        Err(e) => eprintln!("  info failed: {e}"),
+    }
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -120,30 +146,59 @@ fn main() {
         }
     }
 
-    if positional.len() < 2 {
+    if positional.is_empty() {
         eprintln!(
-            "Usage: {} [--query-port-offset N] <output_dir> <addr> [<addr>...]",
+            "Usage: {} [--query-port-offset N] <command> [args...]",
             args[0]
         );
         eprintln!();
+        eprintln!("Commands:");
+        eprintln!("  query <addr> [<addr>...]          Query servers and print info");
+        eprintln!("  capture <output_dir> <addr> [...]  Capture raw responses to files");
+        eprintln!();
         eprintln!("Options:");
         eprintln!("  --query-port-offset N  Add N to each game port to get the query port");
-        eprintln!("                         (e.g., 24714 for DayZ)");
         std::process::exit(1);
     }
 
-    let output_dir = Path::new(positional[0]);
-    fs::create_dir_all(output_dir).expect("failed to create output directory");
+    let command = positional[0];
+    let rest = &positional[1..];
 
     let client = A2SClient::new(Duration::new(5, 0)).expect("failed to create A2S client");
 
-    for game_addr in &positional[1..] {
-        let query_addr = resolve_query_addr(game_addr, query_port_offset);
-        if query_port_offset != 0 {
-            println!("Querying {game_addr} (query port: {query_addr})...");
-        } else {
-            println!("Querying {game_addr}...");
+    match command {
+        "query" => {
+            if rest.is_empty() {
+                eprintln!("Usage: query <addr> [<addr>...]");
+                std::process::exit(1);
+            }
+            for game_addr in rest {
+                let query_addr = resolve_query_addr(game_addr, query_port_offset);
+                println!("{game_addr}:");
+                query(&client, &query_addr);
+            }
         }
-        capture(&client, game_addr, &query_addr, output_dir);
+        "capture" => {
+            if rest.len() < 2 {
+                eprintln!("Usage: capture <output_dir> <addr> [<addr>...]");
+                std::process::exit(1);
+            }
+            let output_dir = Path::new(rest[0]);
+            fs::create_dir_all(output_dir).expect("failed to create output directory");
+
+            for game_addr in &rest[1..] {
+                let query_addr = resolve_query_addr(game_addr, query_port_offset);
+                if query_port_offset != 0 {
+                    println!("Querying {game_addr} (query port: {query_addr})...");
+                } else {
+                    println!("Querying {game_addr}...");
+                }
+                capture(&client, game_addr, &query_addr, output_dir);
+            }
+        }
+        other => {
+            eprintln!("Unknown command: {other}");
+            std::process::exit(1);
+        }
     }
 }
