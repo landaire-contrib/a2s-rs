@@ -1,3 +1,5 @@
+## DEVELOPMENT OF THIS FORK MOVED TO https://github.com/landaire/ssq
+
 [![Crates.io Version](https://img.shields.io/crates/v/a2s.svg)](https://crates.io/crates/a2s/)
 [![Documentation](https://docs.rs/a2s/badge.svg)](https://docs.rs/a2s/)
 
